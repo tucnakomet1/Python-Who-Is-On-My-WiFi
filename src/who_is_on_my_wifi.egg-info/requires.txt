@@ -1,0 +1,2 @@
+getmac
+python-nmap
