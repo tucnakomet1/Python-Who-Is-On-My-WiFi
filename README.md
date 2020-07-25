@@ -56,7 +56,7 @@ Or if you are Linux user type into the terminal:<br/> `git clone https://github.
 <h3 id="module"> Command </h3>
 
 ```
-usage: who-is-on-my-wifi [-h] [-v] [-l] [-C] [-d] [-w] [-c]
+usage: who-is-on-my-wifi [-h] [-v] [-C] [-d] [-w] [-c]
 
 Who-Is-On-My-WIFi module help you to find who is stealing your WiFI
 network, scan your WiFI and show you how many devices are currently
@@ -65,7 +65,6 @@ connected.
 optional arguments:
   -h, --help       show this help message and exit
   -v, --version    show current version
-  -l, --license    show license
   -C, --contact    show contact
   -d, --device     show information about your device
   -w, --who        show who is on your WiFI?!
@@ -106,14 +105,14 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 <h2 id="update">UPDATES AND VERSION </h2>
 
-<h3 id="zerozero"> Version 1.0.0 </h3> 
+<h3 id="zerozero"> Version 1.0 </h3> 
 
 <em>Actuall version</em><br/>
 - supported only Linux
 - Show you connected devices, IP and MAC Addresses
 - Scan your WiFi and show you connected and not connected devices
 
-<h3 id="zeroone"> Version 1.1.0 </h3> 
+<h3 id="zeroone"> Version 1.1 </h3> 
 
 <em> In development </em><br/>
 - supported Linux and Windows<br/>
@@ -227,6 +226,10 @@ print(f"MAC Address: {info[2]}")
 print(f"IP Address (host): {info[3]}")
 print(f"IP Address: {info[4]}")
 print(f"PC HostName: {info[5]}")
+print(f"WiFI Name: {info[6]}")
+print(f"Gateway: {dev[7]}")
+print(f"DNS 1: {dev[8]}")
+print(f"DNS 2: {dev[9]}")
 
 
 # >>> OUTPUT <<<
@@ -238,6 +241,7 @@ print(f"PC HostName: {info[5]}")
 # IP Address (host): 127.0.0.1
 # IP Address: 192.168.0.4
 # PC Name: tucna
+# WiFI Name: Wifi Home
 
 
 ```

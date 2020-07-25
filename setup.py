@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
 	name='who-is-on-my-wifi',
-	version='1.0.0',
+	version='1.0.3',
 	scripts=[
 	"src/who_is_on_my_wifi.py",
 	],
@@ -36,9 +36,8 @@ setup(
 	],
     entry_points={
         'console_scripts': [
-            'whoisonmywifi=src.who_is_on_my_wifi:main',
-            'who-is-on-my-wifi=src.who_is_on_my_wifi:main',
-            'who is on my wifi=src.who_is_on_my_wifi:main',
+            'whoisonmywifi=who_is_on_my_wifi:main',
+            'who-is-on-my-wifi=who_is_on_my_wifi:main',
         ],
     },
 )

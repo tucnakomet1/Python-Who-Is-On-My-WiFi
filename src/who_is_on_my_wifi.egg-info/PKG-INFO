@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: who-is-on-my-wifi
-Version: 1.0.0
+Version: 1.0.3
 Summary: Help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected!
 Home-page: https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi
 Author: Karel Velička
@@ -64,7 +64,7 @@ Description:
         <h3 id="module"> Command </h3>
         
         ```
-        usage: who-is-on-my-wifi [-h] [-v] [-l] [-C] [-d] [-w] [-c]
+        usage: who-is-on-my-wifi [-h] [-v] [-C] [-d] [-w] [-c]
         
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI
         network, scan your WiFI and show you how many devices are currently
@@ -73,7 +73,6 @@ Description:
         optional arguments:
           -h, --help       show this help message and exit
           -v, --version    show current version
-          -l, --license    show license
           -C, --contact    show contact
           -d, --device     show information about your device
           -w, --who        show who is on your WiFI?!
@@ -114,14 +113,14 @@ Description:
         
         <h2 id="update">UPDATES AND VERSION </h2>
         
-        <h3 id="zerozero"> Version 1.0.0 </h3> 
+        <h3 id="zerozero"> Version 1.0 </h3> 
         
         <em>Actuall version</em><br/>
         - supported only Linux
         - Show you connected devices, IP and MAC Addresses
         - Scan your WiFi and show you connected and not connected devices
         
-        <h3 id="zeroone"> Version 1.1.0 </h3> 
+        <h3 id="zeroone"> Version 1.1 </h3> 
         
         <em> In development </em><br/>
         - supported Linux and Windows<br/>
@@ -153,14 +152,14 @@ Description:
         
         <h3 id="connect"> How to see how many devices are currently connected? </h3>
         
-        <storng>Command</strong>
+        <strong>Command</strong>
         
         ```shell
         linux@name:~$ who-is-on-my-wifi -c 5
         ```
         
         <br/>
-        <storng>Python</strong>
+        <strong>Python</strong>
         
         ```python
         from who_is_on_my_wifi import *
@@ -187,14 +186,14 @@ Description:
         
         !!! You have to run this command as `sudo` !!!
         
-        <storng>Command</strong>
+        <strong>Command</strong>
         
         ```shell
         linux@name:~$ sudo who-is-on-my-wifi -w
         ```
         
         <br/>
-        <storng>Python (sudo)</strong>
+        <strong>Python (sudo)</strong>
         
         ```python
         from who_is_on_my_wifi import *
@@ -215,14 +214,14 @@ Description:
         
         <h3 id="info"> How to get information about my device? </h3>
         
-        <storng>Command</strong>
+        <strong>Command</strong>
         
         ```shell
         linux@name:~$ who-is-on-my-wifi -d
         ```
         
         <br/>
-        <storng>Python</strong>
+        <strong>Python</strong>
         
         ```python
         from who_is_on_my_wifi import *
@@ -235,6 +234,10 @@ Description:
         print(f"IP Address (host): {info[3]}")
         print(f"IP Address: {info[4]}")
         print(f"PC HostName: {info[5]}")
+        print(f"WiFI Name: {info[6]}")
+        print(f"Gateway: {dev[7]}")
+        print(f"DNS 1: {dev[8]}")
+        print(f"DNS 2: {dev[9]}")
         
         
         # >>> OUTPUT <<<
@@ -246,6 +249,7 @@ Description:
         # IP Address (host): 127.0.0.1
         # IP Address: 192.168.0.4
         # PC Name: tucna
+        # WiFI Name: Wifi Home
         
         
         ```
@@ -282,6 +286,7 @@ Description:
            <a href = "https://pypi.org/user/Tucnakomet/"><span title="PyPi"><img alt="pypi" src="https://miro.medium.com/max/660/1*2FrV8q6rPdz6w2ShV6y7bw.png" width="40" height="40" style="border:0px solid;" /></a></span>
         
          
+        
 Platform: UNKNOWN
 Classifier: Environment :: Console
 Classifier: Programming Language :: Python :: 3

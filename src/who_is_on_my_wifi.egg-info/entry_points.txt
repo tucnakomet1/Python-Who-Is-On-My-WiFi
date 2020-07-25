@@ -1,5 +1,4 @@
 [console_scripts]
-who is on my wifi = src.who_is_on_my_wifi:main
-who-is-on-my-wifi = src.who_is_on_my_wifi:main
-whoisonmywifi = src.who_is_on_my_wifi:main
+who-is-on-my-wifi = who_is_on_my_wifi:main
+whoisonmywifi = who_is_on_my_wifi:main
 

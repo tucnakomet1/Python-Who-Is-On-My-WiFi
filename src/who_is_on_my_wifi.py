@@ -19,7 +19,7 @@ My GitHub: https://github.com/tucnakomet1/
 
 def license():
     pth = os.path.dirname(inspect.getfile(who_is_on_my_wifi))
-    pth = pth+"/who_is_on_my_wifi-1.0.0.dist-info/"
+    pth = pth+"/who_is_on_my_wifi-1.0.3.dist-info/"
     with open(pth+"LICENSE.txt", "r") as lic:
         SeeLicense = lic.read()
         os.system("clear")
@@ -111,8 +111,30 @@ def device():
     hostname = subprocess.Popen("hostname", shell=True, stdout=subprocess.PIPE)
     hostname = hostname.stdout.readline()
     hostname = hostname.decode("utf-8").split()[0]
+
+    WifiName = subprocess.Popen("sudo iw dev wlan0 info | grep ssid | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
+    WifiName = WifiName.stdout.readline()
+    WifiName = WifiName.decode("utf-8").split()[0]
+
+    DNS1 = subprocess.Popen("grep 'nameserver' /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
+    DNS1 = DNS1.stdout.readline()
+    DNS1 = DNS1.decode("utf-8").split()[1]
+
+    DNS2 = subprocess.Popen("nmcli device show eth0 | grep IP4.DNS | grep -v 1", shell=True, stdout=subprocess.PIPE)
+    DNSTRY = DNS2.stdout.readline()
+    DNSTRY = DNSTRY.decode("utf-8").split()
+    if DNSTRY == []:
+        DNS2 = subprocess.Popen("nmcli device show wlan0 | grep IP4.DNS | grep -v 1", shell=True, stdout=subprocess.PIPE)
+    else:
+        DNS2 = DNSTRY
+    DNS2 = DNS2.stdout.readline()
+    DNS2 = DNS2.decode("utf-8").split()[1]
+
+    Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
+    Gateway = Gateway.stdout.readline()
+    Gateway = Gateway.decode("utf-8").split()[1]
  
-    DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname]
+    DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2]
     return DeviceList
 
 def help():
@@ -122,7 +144,7 @@ def help():
 
 		{UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
 
---version | 1.0.0.
+--version | 1.0.3.
 
 
 {UNDER}{BOLD}About:{END}
@@ -198,8 +220,7 @@ def main():
                                         ↓  ↓  ↓  ↓
                                         Visit my GitHub: https://github.com/tucnakomet1
                                         """))
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0', help='show current version')
-    parser.add_argument('-l', '--license', action='store_true', help='show license')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.3', help='show current version')
     parser.add_argument('-C', '--contact', action='store_true', help='show contact')
     parser.add_argument('-d', '--device', action="store_true", help='show information about your device')
     parser.add_argument('-w', '--who', action="store_true", help='show who is on your WiFI?!')
@@ -216,6 +237,10 @@ MAC Address:        {dev[2]}
 IP Address (host):  {dev[3]}
 IP Address:         {dev[4]}
 PC HostName:        {dev[5]}
+WiFi Name:          {dev[6]}
+Gateway:            {dev[7]}
+DNS 1:              {dev[8]}
+DNS 2:              {dev[9]}
 """)
 
     if args.connect:
@@ -236,8 +261,6 @@ PC HostName:        {dev[5]}
             comm = comm.replace(",", " ")
             print(comm)
     
-    if args.license:
-        license()
 
     if args.contact:
         contact()
@@ -249,4 +272,5 @@ if __name__ == "__main__":
     else:
         print(f"Your Operating System ({plat}) is not supported!\nThis module may not work properly for you!\nPlease wait for Version 1.1.0.\nFor more information: https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi#update")
     main()
+    
 
