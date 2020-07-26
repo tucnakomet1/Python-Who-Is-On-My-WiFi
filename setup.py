@@ -1,7 +1,13 @@
 from setuptools import setup, find_packages
+import platform
 
 with open("README.md", "r") as fh:
 	long_description = fh.read()
+
+if platform.system() == "Windows":
+	inst = "getmac", "python-nmap", "wmi"
+else:
+	inst = "getmac", "python-nmap"
 
 setup(
 	name='who-is-on-my-wifi',
@@ -20,10 +26,7 @@ setup(
 	long_description=long_description,
 	long_description_content_type="text/markdown",
 	license="MIT",
-	install_requires=[
-	"getmac",
-	"python-nmap",
-	],
+	install_requires=[inst],
 	classifiers=[
 		"Environment :: Console",
 		"Programming Language :: Python :: 3",
@@ -38,7 +41,6 @@ setup(
     entry_points={
         'console_scripts': [
             'who-is-on-my-wifi=who_is_on_my_wifi:main',
-			'wiom=who_is_on_my_wifi:main',
         ],
     },
 )

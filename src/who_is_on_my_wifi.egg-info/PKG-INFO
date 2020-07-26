@@ -20,7 +20,7 @@ Description:
         	* <a href="#zerozero">Version 1.0</a><br/>
           * <a href="#zeroone">Version 1.1</a><br/>
         * <a href = "#about">ABOUT</a><br/>
-        * <a href = "#screen">SCREENSHOT</a><br/>
+        * <a href = "#screen">SCREENSHOTS</a><br/>
         * <a href = "#help">HELP</a><br/>
           * <a href = "#app">Application</a><br/>
         	  * <a href = "#connect">How to see how many devices are currently connected?</a><br/>
@@ -62,8 +62,6 @@ Description:
         
         
         <h2 id="usage">USAGE</h2>
-        
-        *You can run it as:* `who-is-on-my-wifi` *or as:* `wiom`...
         
         <h3 id="module"> Command </h3>
         
@@ -140,9 +138,11 @@ Description:
         <br/><br/><br/><br/><br/><br/><br/><br/>
         
         
-        <h2 id="screen">SCREENSHOT</h2>
+        <h2 id="screen">SCREENSHOTS</h2>
         
-        
+        ![connect](https://user-images.githubusercontent.com/55558124/88484663-7b4aae00-cf70-11ea-8969-dcca384a4e58.png)<br/>
+        ![info](https://user-images.githubusercontent.com/55558124/88484780-6fabb700-cf71-11ea-8088-f6795c048d20.png)<br/>
+        ![who](https://user-images.githubusercontent.com/55558124/88484844-18f2ad00-cf72-11ea-94fd-e00acfc46047.png)<br/>
         
         <h2 id="help">HELP</h2>
         

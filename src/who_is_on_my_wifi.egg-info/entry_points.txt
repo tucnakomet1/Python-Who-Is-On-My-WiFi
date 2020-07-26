@@ -1,4 +1,3 @@
 [console_scripts]
 who-is-on-my-wifi = who_is_on_my_wifi:main
-wiom = who_is_on_my_wifi:main
 

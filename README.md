@@ -55,8 +55,6 @@ Or via GitHub:<br/> `git clone https://github.com/tucnakomet1/Python-Who-Is-On-M
 
 <h2 id="usage">USAGE</h2>
 
-*You can run it as:* `who-is-on-my-wifi` *or as:* `wiom`...
-
 <h3 id="module"> Command </h3>
 
 ```
