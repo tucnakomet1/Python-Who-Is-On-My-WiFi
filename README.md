@@ -10,7 +10,9 @@ Who-is-on-my-wifi is python module for Linux users. It shows you IP Addresses of
   * <a href="#python">Python</a><br/>
 * <a href = "#update">UPDATES AND VERSION</a><br/>
 	* <a href="#zerozero">Version 1.0</a><br/>
+  * <a href="#zeroone">Version 1.1</a><br/>
 * <a href = "#about">ABOUT</a><br/>
+* <a href = "#screen">SCREENSHOTS</a><br/>
 * <a href = "#help">HELP</a><br/>
   * <a href = "#app">Application</a><br/>
 	  * <a href = "#connect">How to see how many devices are currently connected?</a><br/>
@@ -36,7 +38,7 @@ See the <a href="https://pypi.org/project/who-is-on-my-wifi/">PyPi</a> page for 
 
 
 If you want to download source code (zip file) you can download it <a href="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/archive/master.zip">here</a>.<br/><br/>
-Or if you are Linux user type into the terminal:<br/> `git clone https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi.git`
+Or via GitHub:<br/> `git clone https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi.git`
 <br/><br/>
 
 
@@ -52,6 +54,8 @@ Or if you are Linux user type into the terminal:<br/> `git clone https://github.
 
 
 <h2 id="usage">USAGE</h2>
+
+*You can run it as:* `who-is-on-my-wifi` *or as:* `wiom`...
 
 <h3 id="module"> Command </h3>
 
@@ -107,16 +111,16 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 <h3 id="zerozero"> Version 1.0 </h3> 
 
-<em>Actuall version</em><br/>
-- supported only Linux
+<em>Old version</em><br/>
+- Supported only Linux
 - Show you connected devices, IP and MAC Addresses
 - Scan your WiFi and show you connected and not connected devices
 
 <h3 id="zeroone"> Version 1.1 </h3> 
 
-<em> In development </em><br/>
-- supported Linux and Windows<br/>
-- more function<br/>
+<em> Current version </em><br/>
+- Supported Linux and Windows<br/>
+- More functions<br/>
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -124,9 +128,15 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 <h2 id="about">ABOUT</h2>
 
-This scrript is created with the help of language Pyhon3. Who-is-on-my-wifi help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are connected.<br/> I tried to do my best so I hope everything is working. If you have some problem, please let me <a href = "#error">know</a>.<br/>
+This script is created with the help of language Pyhon3. Who-is-on-my-wifi help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are connected.<br/> I tried to do my best so I hope everything is working. If you have some problem, please let me <a href = "#error">know</a>.<br/>
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
+
+<h2 id="screen">SCREENSHOTS</h2>
+
+![connect](https://user-images.githubusercontent.com/55558124/88484663-7b4aae00-cf70-11ea-8969-dcca384a4e58.png)<br/>
+![info](https://user-images.githubusercontent.com/55558124/88484780-6fabb700-cf71-11ea-8088-f6795c048d20.png)<br/>
+![who](https://user-images.githubusercontent.com/55558124/88484844-18f2ad00-cf72-11ea-94fd-e00acfc46047.png)<br/>
 
 <h2 id="help">HELP</h2>
 
@@ -176,7 +186,7 @@ for k in range(0,len(see)):
 
 <h3 id="who"> How to see who is on my wifi? </h3>
 
-!!! You have to run this command as `sudo` !!!
+!!! You have to run this command as `sudo` or as `Administrator` !!!
 
 <strong>Command</strong>
 
@@ -185,7 +195,7 @@ linux@name:~$ sudo who-is-on-my-wifi -w
 ```
 
 <br/>
-<strong>Python (sudo)</strong>
+<strong>Python (sudo/ admin)</strong>
 
 ```python
 from who_is_on_my_wifi import *
@@ -242,6 +252,9 @@ print(f"DNS 2: {dev[9]}")
 # IP Address: 192.168.0.4
 # PC Name: tucna
 # WiFI Name: Wifi Home
+# Gateway: 192.168.0.1
+# DNS 1: 85.119.89.2
+# DNS 2: 8.8.8.8
 
 
 ```
@@ -261,6 +274,11 @@ This error means that you have to type int argument (number 0-255) after `-c` ar
 You wrote probably just: `who-is-on-my-wifi -c` <br/>
 But correct input is <em>for example</em>: `who-is-on-my-wifi -c 5` <em>(The number `5` doesn't have to be 5, it can be any number from 0 to 255)</em><br/>
 
+
+<h3 id="c"> Different Error: </h3>
+
+If you have different error make sure you are running command as `sudo` or as `Administrator` and make sure you have [nmap](https://nmap.org/download.html) installed.
+
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
 <h2 id = "license"> LICENSE </h2>
@@ -269,7 +287,7 @@ But correct input is <em>for example</em>: `who-is-on-my-wifi -c 5` <em>(The num
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
 <h2 id="contact">CONTACT</h2>
-You can contact me via my <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=tucnakomet@gmail.com&su=Who is on my WiFi - Python&&tf=1">gmail</a> address <a href="mailto:tucnakomet@gmail.com">tucnakomet@gmail.com</a>.<br/>
+You can contact me via my <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=tucnakomet@gmail.com&su=WIOM_WIFI - Python&&tf=1">gmail</a> address <a href="mailto:tucnakomet@gmail.com">tucnakomet@gmail.com</a>.<br/>
  <br/><br/>
  
  
