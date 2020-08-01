@@ -22,7 +22,7 @@ My GitHub: https://github.com/tucnakomet1/
 
 def license():
     pth = os.path.dirname(inspect.getfile(who_is_on_my_wifi))
-    pth = pth+"/who_is_on_my_wifi-1.1.0.dist-info/"
+    pth = pth+"/who_is_on_my_wifi-1.1.1.dist-info/"
     with open(pth+"LICENSE.txt", "r") as lic:
         SeeLicense = lic.read()
         os.system("clear")
@@ -193,8 +193,31 @@ def device():
         Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
         Gateway = Gateway.stdout.readline()
         Gateway = Gateway.decode("utf-8").split()[1]
+
+        SSID = WifiName
+        ShowProcess3 = subprocess.Popen(["ls", "/etc/NetworkManager/system-connections"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        res1, erra = ShowProcess3.communicate()
+        res1 = res1.decode()
+        res1 = res1.replace(" ", "<<<<")
+        res1 = res1.split()
+
+        for i in range(0, len(res1)):
+            if SSID in res1[i]:
+                try:
+                    outOF = res1[i].replace("<<<<", " ")
+                    comm = f"sudo cat '/etc/NetworkManager/system-connections/{outOF}' | grep psk="
+                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
+                    res2, erra2 = ShowProcess2.communicate()
+                    res2 = res2.decode()
+                    res2 = res2.replace("\n", "")
+                    password = res2.replace("psk=", "")
+                except:
+                    password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+            else:
+                pass
+
     
-        DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2]
+        DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     
     elif plat == "Windows":
         c = wmi.WMI()
@@ -232,6 +255,17 @@ def device():
                 WifiName = "<unknown ssid>"
             else:
                 WifiName = ssids
+                try:
+                    comm = f"netsh wlan show profile name {WifiName} key=clear | findstr Key"
+                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
+                    res2, erra2 = ShowProcess2.communicate()
+                    res2 = res2.decode()
+                    res2 = res2.replace("Key", "")
+                    res2 = res2.replace("Content", "")
+                    res2 = res2.replace(":", "")
+                    password = res2.replace(" ", "")
+                except:
+                    password = "<unknown password>"
         except:
             WifiName = "<unknown ssid>"
 
@@ -254,40 +288,129 @@ def device():
         Gateway = Gateway.decode()
 
 
-        DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2]
+        DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     return DeviceList
 
 def help():
     PURPLE, CYAN, DARKCYAN, BLUE, GREEN, YELLOW, RED, BOLD, UNDER, END = '\033[95m', '\033[96m', '\033[36m', '\033[94m', '\033[92m', '\033[93m', '\033[91m', '\033[1m', '\033[4m', '\033[0m'
-    print(f"""
+    if platform.system() == "Linux":
+        print(f"""
+        
+            {UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
+
+    --version | 1.1.1.
+
+
+
+    {UNDER}{BOLD}About:{END}
+
+        Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
     
-		{UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
---version | 1.1.0.
-{UNDER}{BOLD}About:{END}
-    Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
-{UNDER}{BOLD}Usage:{END}
-    {RED}>>> {YELLOW}import {CYAN}who_is_on_my_wifi{END}
-    {BOLD}{RED}#### show this help page ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}help(){END}
-    {BOLD}{RED}#### show contact ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
-    {BOLD}{RED}#### show license ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){END}
-    {BOLD}{RED}#### see connected devices ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}SeeConnect({END}number{GREEN}){END} {YELLOW}#int number (0 - 255) of searching devices (smaller = faster searching){END}
-    {BOLD}{RED}#### see who is on my wifi ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}who(){END}
-    {BOLD}{RED}#### see information about your device ####{END}
-    {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}device(){END}
-{UNDER}{BOLD}CONTACT:{END}
-    {UNDER}My Gmail:{END} tucnakomet@gmail.com
-    {UNDER}My GitHub:{END} https://github.com/tucnakomet1/
-    {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
-{UNDER}{BOLD}License:{END}
-    MIT License		
-    {UNDER}You can see{END} → {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){RED}{END}
-                → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
-    """)
+    
+    
+    
+    
+    {UNDER}{BOLD}Usage:{END}
+
+        {RED}>>> {YELLOW}import {CYAN}who_is_on_my_wifi{END}
+
+        {BOLD}{RED}#### show this help page ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}help(){END}
+
+        {BOLD}{RED}#### show contact ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
+
+        {BOLD}{RED}#### show license ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){END}
+
+        {BOLD}{RED}#### see connected devices ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}SeeConnect({END}number{GREEN}){END} {YELLOW}#int number (0 - 255) of searching devices (smaller = faster searching){END}
+        
+        {BOLD}{RED}#### see who is on my wifi ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}who(){END}
+
+        {BOLD}{RED}#### see information about your device ####{END}
+        {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}device(){END}
+    
+    
+    
+    
+    
+    {UNDER}{BOLD}CONTACT:{END}
+
+        {UNDER}My Gmail:{END} tucnakomet@gmail.com
+        {UNDER}My GitHub:{END} https://github.com/tucnakomet1/
+        {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
+    
+    
+    
+    
+    
+    {UNDER}{BOLD}License:{END}
+
+        MIT License		
+        {UNDER}You can see{END} → {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){RED}{END}
+                    → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
+        """)
+    else:
+        print(f"""
+        
+            >>>> Welcome to help page!  What's wrong? <<<<
+            
+    --version | 1.1.1.
+
+
+
+    About:
+
+        Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
+    
+    
+    
+    
+    
+    Usage:
+
+        >>> import who_is_on_my_wifi
+
+        #### show this help page ####
+        >>> who_is_on_my_wifi.help()
+
+        #### show contact ####
+        >>> who_is_on_my_wifi.contact()
+
+        #### show license ####
+        >>> who_is_on_my_wifi.license()
+        
+        #### see connected devices ####
+        >>> who_is_on_my_wifi.SeeConnect(number) #int number (0 - 255) of searching devices (smaller = faster searching)
+
+        #### see who is on my wifi ####
+        >>> who_is_on_my_wifi.who()
+
+        #### see information about your device ####
+        >>> who_is_on_my_wifi.device()
+    
+    
+    
+    
+    
+    CONTACT:
+
+        My Gmail: tucnakomet@gmail.com
+        My GitHub: https://github.com/tucnakomet1/
+        who_is_on_my_wifi.contact()
+
+
+
+
+
+    License:
+
+        MIT License		
+        You can see → who_is_on_my_wifi.license()
+                    → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
+        """)
 
 def main():
     wrapper = textwrap.TextWrapper(width=70)
@@ -297,7 +420,7 @@ def main():
                                         ↓  ↓  ↓  ↓
                                         Visit my GitHub: https://github.com/tucnakomet1
                                         """))
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.0', help='show current version')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.1', help='show current version')
     parser.add_argument('-C', '--contact', action='store_true', help='show contact')
     parser.add_argument('-d', '--device', action="store_true", help='show information about your device')
     parser.add_argument('-w', '--who', action="store_true", help='show who is on your WiFI?!')
@@ -318,6 +441,7 @@ WiFi Name:          {dev[6]}
 Gateway:            {dev[7]}
 DNS 1:              {dev[8]}
 DNS 2:              {dev[9]}
+Password:           {dev[10]}
 """)
 
     if args.connect:

@@ -11,7 +11,7 @@ else:
 
 setup(
 	name='who-is-on-my-wifi',
-	version='1.1.0',
+	version='1.1.1',
 	scripts=[
 	"src/who_is_on_my_wifi.py",
 	],
@@ -36,7 +36,7 @@ setup(
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX",
         "Operating System :: Unix",
-		"Operating System :: Windows",
+		'Operating System :: Microsoft :: Windows',
 	],
     entry_points={
         'console_scripts': [

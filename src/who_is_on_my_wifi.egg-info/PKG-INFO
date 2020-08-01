@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: who-is-on-my-wifi
-Version: 1.1.0
+Version: 1.1.1
 Summary: Help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected!
 Home-page: https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi
 Author: Karel Velička
@@ -126,7 +126,7 @@ Description:
         
         <em> Current version </em><br/>
         - Supported Linux and Windows<br/>
-        - More functions<br/>
+        - More functions (see wifi password)<br/>
         
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         
@@ -224,12 +224,14 @@ Description:
         
         <strong>Command</strong>
         
+        !!! You have to run this command as `sudo` or as `Administrator` !!!
+        
         ```shell
-        linux@name:~$ who-is-on-my-wifi -d
+        linux@name:~$ sudo who-is-on-my-wifi -d
         ```
         
         <br/>
-        <strong>Python</strong>
+        <strong>Python (sudo/ admin)</strong>
         
         ```python
         from who_is_on_my_wifi import *
@@ -246,6 +248,7 @@ Description:
         print(f"Gateway: {dev[7]}")
         print(f"DNS 1: {dev[8]}")
         print(f"DNS 2: {dev[9]}")
+        print(f"Password: {dev[10]}")
         
         
         # >>> OUTPUT <<<
@@ -257,10 +260,11 @@ Description:
         # IP Address (host): 127.0.0.1
         # IP Address: 192.168.0.4
         # PC Name: tucna
-        # WiFI Name: Wifi Home
+        # WiFI Name: WifiHome
         # Gateway: 192.168.0.1
         # DNS 1: 85.119.89.2
         # DNS 2: 8.8.8.8
+        # Password: FFFFFFFFF
         
         
         ```
@@ -312,5 +316,5 @@ Classifier: Programming Language :: Python :: 3.8
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: POSIX
 Classifier: Operating System :: Unix
-Classifier: Operating System :: Windows
+Classifier: Operating System :: Microsoft :: Windows
 Description-Content-Type: text/markdown

@@ -118,7 +118,7 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 <em> Current version </em><br/>
 - Supported Linux and Windows<br/>
-- More functions<br/>
+- More functions (see wifi password)<br/>
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -216,12 +216,14 @@ for j in range(0, len(WHO)):
 
 <strong>Command</strong>
 
+!!! You have to run this command as `sudo` or as `Administrator` !!!
+
 ```shell
-linux@name:~$ who-is-on-my-wifi -d
+linux@name:~$ sudo who-is-on-my-wifi -d
 ```
 
 <br/>
-<strong>Python</strong>
+<strong>Python (sudo/ admin)</strong>
 
 ```python
 from who_is_on_my_wifi import *
@@ -238,6 +240,7 @@ print(f"WiFI Name: {info[6]}")
 print(f"Gateway: {dev[7]}")
 print(f"DNS 1: {dev[8]}")
 print(f"DNS 2: {dev[9]}")
+print(f"Password: {dev[10]}")
 
 
 # >>> OUTPUT <<<
@@ -249,10 +252,11 @@ print(f"DNS 2: {dev[9]}")
 # IP Address (host): 127.0.0.1
 # IP Address: 192.168.0.4
 # PC Name: tucna
-# WiFI Name: Wifi Home
+# WiFI Name: WifiHome
 # Gateway: 192.168.0.1
 # DNS 1: 85.119.89.2
 # DNS 2: 8.8.8.8
+# Password: FFFFFFFFF
 
 
 ```
