@@ -255,19 +255,25 @@ def device():
                 WifiName = "<unknown ssid>"
             else:
                 WifiName = ssids
-                try:
-                    comm = f"netsh wlan show profile name {WifiName} key=clear | findstr Key"
-                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
-                    res2, erra2 = ShowProcess2.communicate()
-                    res2 = res2.decode()
-                    res2 = res2.replace("Key", "")
-                    res2 = res2.replace("Content", "")
-                    res2 = res2.replace(":", "")
-                    password = res2.replace(" ", "")
-                except:
-                    password = "<unknown password>"
         except:
             WifiName = "<unknown ssid>"
+        
+        try:
+            comm = f"netsh wlan show profile name {WifiName} key=clear | findstr Key"
+            ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
+            res2, erra2 = ShowProcess2.communicate()
+            res2 = res2.decode()
+            res2 = res2.replace("Key", "")
+            res2 = res2.replace("Content", "")
+            res2 = res2.replace(":", "")
+            res2 = res2.replace(" ", "")
+            if res2 == "":
+                password = "<unknown password>"
+            else:
+                password = res2
+
+        except:
+            password = "<unknown password>"
 
         process = subprocess.Popen(['ipconfig', '/all'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = process.communicate()
@@ -297,13 +303,8 @@ def help():
         print(f"""
         
             {UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
-
     --version | 1.1.1.
-
-
-
     {UNDER}{BOLD}About:{END}
-
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
     
     
@@ -311,24 +312,18 @@ def help():
     
     
     {UNDER}{BOLD}Usage:{END}
-
         {RED}>>> {YELLOW}import {CYAN}who_is_on_my_wifi{END}
-
         {BOLD}{RED}#### show this help page ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}help(){END}
-
         {BOLD}{RED}#### show contact ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
-
         {BOLD}{RED}#### show license ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){END}
-
         {BOLD}{RED}#### see connected devices ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}SeeConnect({END}number{GREEN}){END} {YELLOW}#int number (0 - 255) of searching devices (smaller = faster searching){END}
         
         {BOLD}{RED}#### see who is on my wifi ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}who(){END}
-
         {BOLD}{RED}#### see information about your device ####{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}device(){END}
     
@@ -337,7 +332,6 @@ def help():
     
     
     {UNDER}{BOLD}CONTACT:{END}
-
         {UNDER}My Gmail:{END} tucnakomet@gmail.com
         {UNDER}My GitHub:{END} https://github.com/tucnakomet1/
         {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
@@ -347,7 +341,6 @@ def help():
     
     
     {UNDER}{BOLD}License:{END}
-
         MIT License		
         {UNDER}You can see{END} → {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){RED}{END}
                     → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
@@ -358,11 +351,7 @@ def help():
             >>>> Welcome to help page!  What's wrong? <<<<
             
     --version | 1.1.1.
-
-
-
     About:
-
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
     
     
@@ -370,24 +359,18 @@ def help():
     
     
     Usage:
-
         >>> import who_is_on_my_wifi
-
         #### show this help page ####
         >>> who_is_on_my_wifi.help()
-
         #### show contact ####
         >>> who_is_on_my_wifi.contact()
-
         #### show license ####
         >>> who_is_on_my_wifi.license()
         
         #### see connected devices ####
         >>> who_is_on_my_wifi.SeeConnect(number) #int number (0 - 255) of searching devices (smaller = faster searching)
-
         #### see who is on my wifi ####
         >>> who_is_on_my_wifi.who()
-
         #### see information about your device ####
         >>> who_is_on_my_wifi.device()
     
@@ -396,17 +379,10 @@ def help():
     
     
     CONTACT:
-
         My Gmail: tucnakomet@gmail.com
         My GitHub: https://github.com/tucnakomet1/
         who_is_on_my_wifi.contact()
-
-
-
-
-
     License:
-
         MIT License		
         You can see → who_is_on_my_wifi.license()
                     → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
