@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: who-is-on-my-wifi
-Version: 1.1.1
+Version: 1.1.2
 Summary: Help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected!
 Home-page: https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi
 Author: Karel Velička
@@ -306,7 +306,6 @@ Description:
            <a href = "https://pypi.org/user/Tucnakomet/"><span title="PyPi"><img alt="pypi" src="https://miro.medium.com/max/660/1*2FrV8q6rPdz6w2ShV6y7bw.png" width="40" height="40" style="border:0px solid;" /></a></span>
         
          
-        
 Platform: UNKNOWN
 Classifier: Environment :: Console
 Classifier: Programming Language :: Python :: 3
