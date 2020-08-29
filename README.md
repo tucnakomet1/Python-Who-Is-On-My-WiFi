@@ -237,10 +237,10 @@ print(f"IP Address (host): {info[3]}")
 print(f"IP Address: {info[4]}")
 print(f"PC HostName: {info[5]}")
 print(f"WiFI Name: {info[6]}")
-print(f"Gateway: {dev[7]}")
-print(f"DNS 1: {dev[8]}")
-print(f"DNS 2: {dev[9]}")
-print(f"Password: {dev[10]}")
+print(f"Gateway: {info[7]}")
+print(f"DNS 1: {info[8]}")
+print(f"DNS 2: {info[9]}")
+print(f"Password: {info[10]}")
 
 
 # >>> OUTPUT <<<

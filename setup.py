@@ -11,7 +11,7 @@ else:
 
 setup(
 	name='who-is-on-my-wifi',
-	version='1.1.2',
+	version='1.1.3',
 	scripts=[
 	"src/who_is_on_my_wifi.py",
 	],
