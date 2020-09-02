@@ -22,7 +22,7 @@ My GitHub: https://github.com/tucnakomet1/
 
 def license():
     pth = os.path.dirname(inspect.getfile(who_is_on_my_wifi))
-    pth = pth+"/who_is_on_my_wifi-1.1.3.dist-info/"
+    pth = pth+"/who_is_on_my_wifi-1.1.4.dist-info/"
     with open(pth+"LICENSE.txt", "r") as lic:
         SeeLicense = lic.read()
         os.system("clear")
@@ -183,9 +183,25 @@ def device():
         hostname = hostname.stdout.readline()
         hostname = hostname.decode("utf-8").split()[0]
 
-        WifiName = subprocess.Popen("iwgetid -r", shell=True, stdout=subprocess.PIPE)
-        WifiName = WifiName.stdout.readline()
-        WifiName = WifiName.decode("utf-8").split()[0]
+        try:
+            WifiName = subprocess.Popen("iwgetid -r", shell=True, stdout=subprocess.PIPE)
+            WifiName = WifiName.stdout.readline()
+            WifiName = WifiName.decode("utf-8").split()
+            if WifiName == []:
+                os.system("sudo service network-manager restart")
+                WifiName = subprocess.Popen("iwgetid -r", shell=True, stdout=subprocess.PIPE)
+                WifiName = WifiName.stdout.readline()
+                WifiName = WifiName.decode("utf-8").split()[0]
+            else:
+                WifiName = WifiName[0]
+        except:
+            WifiName = subprocess.Popen("iw dev | grep ssid | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
+            WifiName = WifiName.stdout.readline()
+            WifiName = WifiName.decode("utf-8").split()
+            if WifiName == []:
+                WifiName = ""
+            else:
+                WifiName = WifiName[0]
         
         try:
             DNS = subprocess.Popen("nmcli | grep servers", shell=True, stdout=subprocess.PIPE)
@@ -318,11 +334,8 @@ def help():
         print(f"""
         
             {UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
-<<<<<<< HEAD
-    --version | 1.1.3.
-=======
-    --version | 1.1.1.
->>>>>>> ca5d4bd9011ee0141dc3c7066663d7385be60202
+    --version | 1.1.4.
+
     {UNDER}{BOLD}About:{END}
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
     
@@ -369,11 +382,10 @@ def help():
         
             >>>> Welcome to help page!  What's wrong? <<<<
             
-<<<<<<< HEAD
-    --version | 1.1.3.
-=======
-    --version | 1.1.1.
->>>>>>> ca5d4bd9011ee0141dc3c7066663d7385be60202
+
+    --version | 1.1.4.
+    
+    
     About:
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
     
@@ -419,7 +431,7 @@ def main():
                                         ↓  ↓  ↓  ↓
                                         Visit my GitHub: https://github.com/tucnakomet1
                                         """))
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.3', help='show current version')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.4', help='show current version')
     parser.add_argument('-C', '--contact', action='store_true', help='show contact')
     parser.add_argument('-d', '--device', action="store_true", help='show information about your device')
     parser.add_argument('-w', '--who', action="store_true", help='show who is on your WiFI?!')
