@@ -22,7 +22,7 @@ My GitHub: https://github.com/tucnakomet1/
 
 def license():
     pth = os.path.dirname(inspect.getfile(who_is_on_my_wifi))
-    pth = pth+"/who_is_on_my_wifi-1.1.4.dist-info/"
+    pth = pth+"/who_is_on_my_wifi-1.2.0.dist-info/"
     with open(pth+"LICENSE.txt", "r") as lic:
         SeeLicense = lic.read()
         os.system("clear")
@@ -151,22 +151,28 @@ def device():
     plat = platform.system()
     if plat == "Linux":
         try:
-            nam = subprocess.Popen("sudo dmidecode -s system-manufacturer", shell=True, stdout=subprocess.PIPE)
-            nam = nam.stdout.readline()
-            nam = nam.decode("utf-8").split()[0]
+            try:
+                nam = subprocess.Popen("sudo dmidecode -s system-manufacturer", shell=True, stdout=subprocess.PIPE)
+                nam = nam.stdout.readline()
+                nam = nam.decode("utf-8").split()[0]
+            except:
+                nam = subprocess.Popen("cat /sys/devices/virtual/dmi/id/sys_vendor", shell=True, stdout=subprocess.PIPE)
+                nam = nam.stdout.readline()
+                nam = nam.decode("utf-8").split()[0]
         except:
-            nam = subprocess.Popen("cat /sys/devices/virtual/dmi/id/sys_vendor", shell=True, stdout=subprocess.PIPE)
-            nam = nam.stdout.readline()
-            nam = nam.decode("utf-8").split()[0]
+            nam = "unknown"
         
         try:
-            product_name = subprocess.Popen("sudo dmidecode -s baseboard-product-name", shell=True, stdout=subprocess.PIPE)
-            product_name = product_name.stdout.readline()
-            product_name = product_name.decode("utf-8").split()[0]
+            try:
+                product_name = subprocess.Popen("sudo dmidecode -s baseboard-product-name", shell=True, stdout=subprocess.PIPE)
+                product_name = product_name.stdout.readline()
+                product_name = product_name.decode("utf-8").split()[0]
+            except:
+                product_name = subprocess.Popen("cat /sys/devices/virtual/dmi/id/product_name", shell=True, stdout=subprocess.PIPE)
+                product_name = product_name.stdout.readline()
+                product_name = product_name.decode("utf-8").split()[0]
         except:
-            product_name = subprocess.Popen("cat /sys/devices/virtual/dmi/id/product_name", shell=True, stdout=subprocess.PIPE)
-            product_name = product_name.stdout.readline()
-            product_name = product_name.decode("utf-8").split()[0]
+            product_name = "unknown"
             
 
         MAC = getmac.get_mac_address()
@@ -195,13 +201,7 @@ def device():
             else:
                 WifiName = WifiName[0]
         except:
-            WifiName = subprocess.Popen("iw dev | grep ssid | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
-            WifiName = WifiName.stdout.readline()
-            WifiName = WifiName.decode("utf-8").split()
-            if WifiName == []:
-                WifiName = ""
-            else:
-                WifiName = WifiName[0]
+            WifiName = "unknown"
         
         try:
             DNS = subprocess.Popen("nmcli | grep servers", shell=True, stdout=subprocess.PIPE)
@@ -214,39 +214,26 @@ def device():
             DNS1 = DNS[1]
             DNS2 = DNS[2]
         except:
-            DNS1 = ""
-            DNS2 = ""
+            DNS1 = "unknown"
+            DNS2 = "unknown"
         
+        try:
+            Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
+            Gateway = Gateway.stdout.readline()
+            Gateway = Gateway.decode("utf-8").split()[1]
+        except:
+            Gateway = "unknown"
 
-        Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
-        Gateway = Gateway.stdout.readline()
-        Gateway = Gateway.decode("utf-8").split()[1]
-
-        SSID = WifiName
-        ShowProcess3 = subprocess.Popen(["ls", "/etc/NetworkManager/system-connections"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        res1, erra = ShowProcess3.communicate()
-        res1 = res1.decode()
-        res1 = res1.replace(" ", "<<<<")
-        res1 = res1.split()
-
-        for i in range(0, len(res1)):
-            if SSID in res1[i]:
-                try:
-                    outOF = res1[i].replace("<<<<", " ")
-                    comm = f"sudo cat '/etc/NetworkManager/system-connections/{outOF}' | grep psk="
-                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
-                    res2, erra2 = ShowProcess2.communicate()
-                    res2 = res2.decode()
-                    if res2 != "":
-                        res2 = res2.replace("\n", "")
-                        password = res2.replace("psk=", "")
-                    else:
-                        pass
-                except:
-                    password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+        try:
+            SSID = WifiName
+            if SSID == "unknown":
+                password = "unknown"
             else:
-                pass
-
+                ShowProcess3 = subprocess.Popen(["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", SSID], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                password, erra = ShowProcess3.communicate()
+                password = password.decode("utf-8").split()[0]
+        except:
+            password = "unknown"
     
         DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     
@@ -328,13 +315,97 @@ def device():
         DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     return DeviceList
 
+
+    if plat == "Darwin":
+        try:
+            #nam = "unknown"
+            nam = subprocess.Popen("system_profiler SPHardwareDataType | grep 'Model Name:' | awk '{print $3}'", shell=True, stdout=subprocess.PIPE)
+            nam = nam.stdout.readline()
+            nam = nam.decode("utf-8").split()[0]
+        except:
+            nam = "unknown"
+        
+        try:
+            #product_name = "unknown"
+            product_name = subprocess.Popen("system_profiler SPHardwareDataType | grep 'Model Identifier:' | awk '{print $3}'", shell=True, stdout=subprocess.PIPE)
+            product_name = product_name.stdout.readline()
+            product_name = product_name.decode("utf-8").split()[0]
+        except:
+            product_name = "unknown"
+            
+
+        MAC = getmac.get_mac_address()
+
+        try:
+            IP_host = subprocess.Popen("cat /etc/resolv.conf | grep nameserver | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
+            IP_host = IP_host.stdout.readline()
+            IP_host = IP_host.decode("utf-8").split()[0]
+        except:
+            IP_host = "unknown"
+
+        try:
+            IP_All = subprocess.Popen("ipconfig getifaddr en0", shell=True, stdout=subprocess.PIPE)
+            IP_All = IP_All.stdout.readline()
+            IP_All = IP_All.decode("utf-8").split()[0]
+        except:
+            IP_All = "unknown"
+
+        hostname = subprocess.Popen("hostname", shell=True, stdout=subprocess.PIPE)
+        hostname = hostname.stdout.readline()
+        hostname = hostname.decode("utf-8").split()[0]
+
+        try:
+            WifiName = subprocess.Popen("/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I  | awk -F' SSID: '  '/ SSID: / {print $2}'", shell=True, stdout=subprocess.PIPE)
+            WifiName = WifiName.stdout.readline()
+            WifiName = WifiName.decode("utf-8").split()
+        except:
+            WifiName = "unknown"
+        
+        try:
+            DNS1 = subprocess.Popen("scutil --dns | grep nameserver | awk '{print $3}'", shell=True, stdout=subprocess.PIPE)
+            DNS1 = DNS1.stdout.readline()
+            DNS1 = DNS1.decode("utf-8").split()
+        except:
+            DNS1 = "unknown"
+
+        try:
+            #DNS2 = "unknown"
+            DNS2 = subprocess.Popen("networksetup -getdnsservers airport", shell=True, stdout=subprocess.PIPE)
+            DNS2 = DNS2.stdout.readline()
+            DNS2 = DNS2.decode("utf-8").split()
+        except:
+            DNS2 = "unknown"
+        
+        try:
+            Gateway = subprocess.Popen("netstat -rn | grep 'default' | awk '{print $2}'", shell=True, stdout=subprocess.PIPE)
+            Gateway = Gateway.stdout.readline()
+            Gateway = Gateway.decode("utf-8").split()[1]
+        except:
+            Gateway = "unknown"
+
+        try:
+            SSID = WifiName
+            if SSID == "unknown":
+                password = "unknown"
+            else:
+                password = subprocess.Popen(f"security find-generic-password -ga {SSID} | grep 'password:'", shell=True, stdout=subprocess.PIPE)
+                password = password.stdout.readline()
+                password = password.decode("utf-8").split()
+        except:
+            password = "unknown"
+    
+        DeviceList = [DNS2]
+        DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
+
+    
+
 def help():
     PURPLE, CYAN, DARKCYAN, BLUE, GREEN, YELLOW, RED, BOLD, UNDER, END = '\033[95m', '\033[96m', '\033[36m', '\033[94m', '\033[92m', '\033[93m', '\033[91m', '\033[1m', '\033[4m', '\033[0m'
     if platform.system() == "Linux":
         print(f"""
         
             {UNDER}>>>> Welcome to help page!  What's wrong? <<<<{END}
-    --version | 1.1.4.
+    --version | 1.2.0.
 
     {UNDER}{BOLD}About:{END}
         Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
@@ -383,7 +454,7 @@ def help():
             >>>> Welcome to help page!  What's wrong? <<<<
             
 
-    --version | 1.1.4.
+    --version | 1.2.0.
     
     
     About:
@@ -431,7 +502,7 @@ def main():
                                         ↓  ↓  ↓  ↓
                                         Visit my GitHub: https://github.com/tucnakomet1
                                         """))
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.4', help='show current version')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.2.0', help='show current version')
     parser.add_argument('-C', '--contact', action='store_true', help='show contact')
     parser.add_argument('-d', '--device', action="store_true", help='show information about your device')
     parser.add_argument('-w', '--who', action="store_true", help='show who is on your WiFI?!')

@@ -9,8 +9,9 @@ Who-is-on-my-wifi is python module for Linux users. It shows you IP Addresses of
   * <a href="#module">Command</a><br/>
   * <a href="#python">Python</a><br/>
 * <a href = "#update">UPDATES AND VERSION</a><br/>
-	* <a href="#zerozero">Version 1.0</a><br/>
+  * <a href="#zerozero">Version 1.0</a><br/>
   * <a href="#zeroone">Version 1.1</a><br/>
+  * <a href="#zerotwo">Version 1.2</a><br/> 
 * <a href = "#about">ABOUT</a><br/>
 * <a href = "#screen">SCREENSHOTS</a><br/>
 * <a href = "#help">HELP</a><br/>
@@ -116,9 +117,15 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 <h3 id="zeroone"> Version 1.1 </h3> 
 
-<em> Current version </em><br/>
+<em> Old version </em><br/>
 - Supported Linux and Windows<br/>
 - More functions (see wifi password)<br/>
+
+<h3 id="zerotwo"> Version 1.2 </h3> 
+
+<em> Current version </em><br/>
+- Supported Linux, Windows and Mac OS <br/>
+- bug fixes<br/>
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -276,10 +283,17 @@ This error means that you have to type int argument (number 0-255) after `-c` ar
 You wrote probably just: `who-is-on-my-wifi -c` <br/>
 But correct input is <em>for example</em>: `who-is-on-my-wifi -c 5` <em>(The number `5` doesn't have to be 5, it can be any number from 0 to 255)</em><br/>
 
+<h3 id = "nmap"> nmap.nmap.PortScannerError: 'nmap program was not found in path. PATH is : ...' </h3>
+
+This error means that you don't have Nmap installed. <br/>
+To fix this type into the terminal `sudo apt-get install nmap` or [download](https://nmap.org/download.html) it from their web page.
+
+
+
 
 <h3 id="c"> Different Error: </h3>
 
-If you have different error make sure you are running command as `sudo` or as `Administrator` and make sure you have [nmap](https://nmap.org/download.html) installed.
+If you have different error make sure you are running command as `sudo` or as `Administrator` and make sure you have [Nmap](https://nmap.org/download.html) installed.
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
 

@@ -5,13 +5,19 @@ with open("README.md", "r") as fh:
 	long_description = fh.read()
 
 if platform.system() == "Windows":
-	inst = "getmac", "python-nmap", "wmi"
+	try:
+		inst = "getmac", "python-nmap", "wmi"
+	except:
+		inst = "getmac", "python3-nmap", "wmi"
 else:
-	inst = "getmac", "python-nmap"
+	try:
+		inst = "getmac", "python-nmap"
+	except:
+		inst = "getmac", "python3-nmap"
 
 setup(
 	name='who-is-on-my-wifi',
-	version='1.1.4',
+	version='1.2.0',
 	scripts=[
 	"src/who_is_on_my_wifi.py",
 	],
