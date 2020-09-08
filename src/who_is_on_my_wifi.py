@@ -105,17 +105,23 @@ def who():
         product_name = dev[1]
 
         nm = nmap.PortScanner()
-        host = MyIP + "/24"
+        host = Host_to_Gateway(MyIP) + "/24"
         dictList = nm.scan(hosts=host, arguments='-sn')
         scan = dictList.get("scan")
 
         YourDeviceList = ["IP Address:", MyIP, "Mac Address:", MyMac, "Device:", f"{name} {product_name} (Your device)"]
         
         for IP in scan:
-            vendor = scan[IP]
-            vendor = vendor.get("vendor")
-            for MAC in vendor:
-                WhoList.append(["IP Address:", IP, "Mac Address:", MAC, "Device:", vendor[MAC]])
+            connected_device = scan[IP]
+            addresses = connected_device.get("addresses")
+            vendor = connected_device.get("vendor")
+
+            ip_addr = addresses.get("ipv4")
+            if ip_addr == MyIP: continue
+            
+            MAC_addr = addresses.get("mac")
+            dealer = vendor.get(MAC_addr)
+            WhoList.append(["IP Address:", ip_addr, "Mac Address:", MAC_addr, "Device:", dealer])
 
         WhoList.append(YourDeviceList)
 
@@ -223,6 +229,9 @@ def device():
         Gateway = Gateway.decode("utf-8").split()[1]
 
         SSID = WifiName
+        if SSID == "":
+            SSID = WiredConName()
+            SSID = SSID.replace(" ", "<<<<")
         ShowProcess3 = subprocess.Popen(["ls", "/etc/NetworkManager/system-connections"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         res1, erra = ShowProcess3.communicate()
         res1 = res1.decode()
@@ -241,7 +250,8 @@ def device():
                         res2 = res2.replace("\n", "")
                         password = res2.replace("psk=", "")
                     else:
-                        pass
+                        password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+#                        pass
                 except:
                     password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
             else:
