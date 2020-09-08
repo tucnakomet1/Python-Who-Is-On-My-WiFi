@@ -9,6 +9,8 @@ import getmac
 import nmap
 import os
 
+from wired_connection import WiredConName, Host_to_Gateway
+
 if platform.system() == "Windows":
     import wmi
 
