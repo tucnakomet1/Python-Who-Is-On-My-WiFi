@@ -91,7 +91,7 @@ def SeeConnect(num):
 
 
 
-def who():
+def who(current_device = []):
     plat = platform.system()
     if plat == "Linux":
         if os.getuid() == 1000:
@@ -100,7 +100,9 @@ def who():
             pass
 
         WhoList = []
-        dev = device()
+        if current_device == []:
+            dev = device()
+        else: dev = current_device
         MyIP = dev[4]
         MyMac = dev[2]
         name = dev[0]
