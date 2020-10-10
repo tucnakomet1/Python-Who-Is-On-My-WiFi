@@ -41,11 +41,13 @@ setup(
 		"Programming Language :: Python :: 3.8",
 		"License :: OSI Approved :: MIT License",
 		"Operating System :: POSIX",
-        "Operating System :: Unix",
+                "Operating System :: Unix",
 		'Operating System :: Microsoft :: Windows',
+                "Operating System :: OS Independent",
 	],
     entry_points={
         'console_scripts': [
+            'wiom=who_is_on_my_wifi:main',
             'who-is-on-my-wifi=who_is_on_my_wifi:main',
         ],
     },

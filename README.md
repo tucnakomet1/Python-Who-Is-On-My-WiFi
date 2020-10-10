@@ -1,10 +1,10 @@
 
 <h1 id="who-is-on-my-wifi">Who is on my WiFi - Python</h1>
 
-Who-is-on-my-wifi is python module for Linux users. It shows you IP Addresses of all cannected devices and much more!
+Who-is-on-my-wifi is python module for Linux, Windows and Mac users. It shows you IP Addresses of all cannected devices and much more!
 
 * <a href="#install">INSTALLATION</a><br/>
-	* <a href="#upgrade">UPGRADE</a><br/>
+  * <a href="#upgrade">UPGRADE</a><br/>
 * <a href = "#usage">USAGE</a><br/>
   * <a href="#module">Command</a><br/>
   * <a href="#python">Python</a><br/>
@@ -16,12 +16,11 @@ Who-is-on-my-wifi is python module for Linux users. It shows you IP Addresses of
 * <a href = "#screen">SCREENSHOTS</a><br/>
 * <a href = "#help">HELP</a><br/>
   * <a href = "#app">Application</a><br/>
-	  * <a href = "#connect">How to see how many devices are currently connected?</a><br/>
     * <a href = "#who">How to see who is on my wifi?</a><br/>
     * <a href = "#info">How to get information about my device?</a><br/>
   * <a href = "#error">Error</a><br/>
-	  * <a href = "#attribute">AttributeError:</a><br/>
-    * <a href = "#c">who-is-on-my-wifi: error:</a><br/>
+    * <a href = "#attribute">AttributeError:</a><br/>
+    * <a href = "#nmap">NmapError:</a><br/>
 * <a href = "#license">LICENSE</a><br/>
 * <a href = "#contact">CONTACT</a><br/>
 <br/>
@@ -59,7 +58,8 @@ Or via GitHub:<br/> `git clone https://github.com/tucnakomet1/Python-Who-Is-On-M
 <h3 id="module"> Command </h3>
 
 ```
-usage: who-is-on-my-wifi [-h] [-v] [-C] [-d] [-w] [-c]
+usage: who-is-on-my-wifi [-h] [-v] [-c] [-d] [-w]
+usage: wiom[-h] [-v] [-c] [-d] [-w]
 
 Who-Is-On-My-WIFi module help you to find who is stealing your WiFI
 network, scan your WiFI and show you how many devices are currently
@@ -68,10 +68,9 @@ connected.
 optional arguments:
   -h, --help       show this help message and exit
   -v, --version    show current version
-  -C, --contact    show contact
+  -c, --contact    show contact
   -d, --device     show information about your device
   -w, --who        show who is on your WiFI?!
-  -c , --connect   show how many devices are currently connected
 
 Thank you!
 ↓  ↓  ↓  ↓
@@ -93,9 +92,6 @@ Visit my GitHub: https://github.com/tucnakomet1
 #### show contact page ####
 >>> who_is_on_my_wifi.contact()
 
-
-#### see connected devices ####
->>> who_is_on_my_wifi.SeeConnect(number) #int number (0 - 255) of searching devices (smaller = faster searching)
 
 #### see who is on my wifi ####
 >>> who_is_on_my_wifi.who()
@@ -139,55 +135,21 @@ This script is created with the help of language Pyhon3. Who-is-on-my-wifi help 
 
 <h2 id="screen">SCREENSHOTS</h2>
 
-![connect](https://user-images.githubusercontent.com/55558124/88484663-7b4aae00-cf70-11ea-8969-dcca384a4e58.png)<br/>
 ![info](https://user-images.githubusercontent.com/55558124/88484780-6fabb700-cf71-11ea-8088-f6795c048d20.png)<br/>
 ![who](https://user-images.githubusercontent.com/55558124/88484844-18f2ad00-cf72-11ea-94fd-e00acfc46047.png)<br/>
 
 <h2 id="help">HELP</h2>
 
 * <a href = "#app">Application</a><br/>
-	* <a href = "#connect">How to see how many devices are currently connected?</a><br/>
   * <a href = "#who">How to see who is on my wifi?</a><br/>
   * <a href = "#info">How to get information about my device?</a><br/>
 * <a href = "#error">Error</a><br/>
-	* <a href = "#attribute">AttributeError:</a><br/>
-  * <a href = "#c">who-is-on-my-wifi: error:</a><br/>
+  * <a href = "#attribute">AttributeError:</a><br/>
+  * <a href = "#nmap">NmapError</a><br/>
 <br/><br/>
 
  <h2 id = "app"> Application </h2>
 
-
-<h3 id="connect"> How to see how many devices are currently connected? </h3>
-
-<strong>Command</strong>
-
-```shell
-linux@name:~$ who-is-on-my-wifi -c 5
-```
-
-<br/>
-<strong>Python</strong>
-
-```python
-from who_is_on_my_wifi import *
-
-see = who_is_on_my_wifi.SeeConnect(5) #any int number (0 - 255) of searching devices (smaller = faster searching)
-for k in range(0,len(see)):
-    print(see[k])
-
-#>>> OUTPUT <<<
-
-# ['Connected devices: 3']
-# ['Not connected devices: 2']
-# ['IP Address:', '192.168.0.1', 'is currently', 'connected']
-# ['IP Address:', '192.168.0.2', 'is currently', 'connected']
-# ['IP Address:', '192.168.0.3', 'is currently', 'not connected']
-# ['IP Address:', '192.168.0.4', 'is currently', 'connected']
-# ['IP Address:', '192.168.0.5', 'is currently', 'not connected']
-
-```
-
-<br/><br/>
 
 <h3 id="who"> How to see who is on my wifi? </h3>
 
@@ -198,6 +160,10 @@ for k in range(0,len(see)):
 ```shell
 linux@name:~$ sudo who-is-on-my-wifi -w
 ```
+or
+```shell
+linux@name:~$ sudo wiom -w
+```
 
 <br/>
 <strong>Python (sudo/ admin)</strong>
@@ -207,8 +173,8 @@ from who_is_on_my_wifi import *
 
 
 WHO = who()
-for j in range(0, len(WHO)):
-    print(WHO[j])
+for i in range(0, len(WHO)):
+    print(WHO[i])
 
 # >>> OUTPUT <<<
 
@@ -223,14 +189,16 @@ for j in range(0, len(WHO)):
 
 <strong>Command</strong>
 
-!!! You have to run this command as `sudo` or as `Administrator` !!!
-
 ```shell
 linux@name:~$ sudo who-is-on-my-wifi -d
 ```
+or
+```shell
+linux@name:~$ sudo wiom -d
+```
 
 <br/>
-<strong>Python (sudo/ admin)</strong>
+<strong>Python</strong>
 
 ```python
 from who_is_on_my_wifi import *
@@ -277,19 +245,11 @@ This error means that you used / entered an object that doesn't exist. It is pro
 Make sure you wrote everything <a href="#usage">correctly</a>.
 <br/><br/>
 
-<h3 id="c"> who-is-on-my-wifi: error: argument -c/--connect: expected one argument </h3>
-
-This error means that you have to type int argument (number 0-255) after `-c` argument.<br/>
-You wrote probably just: `who-is-on-my-wifi -c` <br/>
-But correct input is <em>for example</em>: `who-is-on-my-wifi -c 5` <em>(The number `5` doesn't have to be 5, it can be any number from 0 to 255)</em><br/>
-
 <h3 id = "nmap"> nmap.nmap.PortScannerError: 'nmap program was not found in path. PATH is : ...' </h3>
 
 This error means that you don't have Nmap installed. <br/>
 To fix this type into the terminal `sudo apt-get install nmap` or [download](https://nmap.org/download.html) it from their web page.
-
-
-
+<br/><br/>
 
 <h3 id="c"> Different Error: </h3>
 
@@ -303,7 +263,7 @@ If you have different error make sure you are running command as `sudo` or as `A
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
 <h2 id="contact">CONTACT</h2>
-You can contact me via my <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=tucnakomet@gmail.com&su=WIOM_WIFI - Python&&tf=1">gmail</a> address <a href="mailto:tucnakomet@gmail.com">tucnakomet@gmail.com</a>.<br/>
+You can contact me via my gmail address <a href="mailto:tucnakomet@gmail.com">tucnakomet@gmail.com</a>.<br/>
  <br/><br/>
  
  
