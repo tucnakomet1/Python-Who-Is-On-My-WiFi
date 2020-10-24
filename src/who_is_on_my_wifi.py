@@ -30,67 +30,6 @@ def license():
         os.system("clear")
         print(SeeLicense)
 
-def SeeConnect(num):
-    plat = platform.system()
-    if plat == "Linux":
-        num = int(num)+1
-        dev = device()
-        BASIC_IP = list(dev[4])
-        BASIC_IP.pop()
-        BASIC_IP = "".join(BASIC_IP)
-        listOFip = []
-        Conn = 0
-        NotConn = 0
-
-        for i in range(1, num):
-            ADDRESS = BASIC_IP + str(i)
-            CountProcess = subprocess.call(["ping", "-c", "1", ADDRESS], stdout=subprocess.PIPE)
-
-            ShowProcess = subprocess.Popen(["ping", "-c", "1", ADDRESS], stdout=subprocess.PIPE)
-            line = ShowProcess.stdout.readline()
-            con = line.decode("utf-8").split()[1]
-
-            if CountProcess == 0 or CountProcess == 2:
-                Conn += 1
-                listOFip.append(["IP Address:", f"{con}", "is currently", "connected"])
-            elif CountProcess == 1:
-                NotConn += 1
-                subprocess.Popen.kill(ShowProcess)
-                listOFip.append(["IP Address:", f"{con}", "is currently", "not connected"])
-            else:
-                listOFip.append("Something went wrong! Please try it again.")
-        listOFip.insert(0, [f"Not connected devices: {NotConn}"])
-        listOFip.insert(0, [f"Connected devices: {Conn}"])
-
-
-    elif plat == "Windows":
-        num = int(num)+1
-        dev = device()
-        BASIC_IP = list(dev[4])
-        BASIC_IP.pop()
-        BASIC_IP = "".join(BASIC_IP)
-        listOFip = []
-        Conn = 0
-        NotConn = 0
-
-        for y in range(1, num):
-            ADDRESS = BASIC_IP + str(y)
-            ShowProcess = subprocess.Popen(["ping", ADDRESS, "-t", "-n", "1"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = ShowProcess.communicate()
-            out = out.split()
-            if b'unreachable.' in out:
-                NotConn += 1
-                listOFip.append(["IP Address:", f"{ADDRESS}", "is currently", "not connected"])
-            else:
-                Conn += 1
-                listOFip.append(["IP Address:", f"{ADDRESS}", "is currently", "connected"])
-        listOFip.insert(0, [f"Not connected devices: {NotConn}"])
-        listOFip.insert(0, [f"Connected devices: {Conn}"])
-
-    return listOFip
-
-
-
 def who(current_device = []):
     plat = platform.system()
     if plat == "Linux":
@@ -294,8 +233,6 @@ def device():
                 ShowProcess3 = subprocess.Popen(["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", SSID], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 password, erra = ShowProcess3.communicate()
                 password = password.decode("utf-8").split()[0]
-        except:
-            password = "unknown"
     
         DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     
