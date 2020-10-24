@@ -9,6 +9,8 @@ import getmac
 import nmap
 import os
 
+from wired_connection import WiredConName, Host_to_Gateway
+
 if platform.system() == "Windows":
     import wmi
 
@@ -28,7 +30,72 @@ def license():
         os.system("clear")
         print(SeeLicense)
 
+<<<<<<< HEAD
 def who():
+=======
+def SeeConnect(num):
+    plat = platform.system()
+    if plat == "Linux":
+        num = int(num)+1
+        dev = device()
+        BASIC_IP = list(dev[4])
+        BASIC_IP.pop()
+        BASIC_IP = "".join(BASIC_IP)
+        listOFip = []
+        Conn = 0
+        NotConn = 0
+
+        for i in range(1, num):
+            ADDRESS = BASIC_IP + str(i)
+            CountProcess = subprocess.call(["ping", "-c", "1", ADDRESS], stdout=subprocess.PIPE)
+
+            ShowProcess = subprocess.Popen(["ping", "-c", "1", ADDRESS], stdout=subprocess.PIPE)
+            line = ShowProcess.stdout.readline()
+            con = line.decode("utf-8").split()[1]
+
+            if CountProcess == 0 or CountProcess == 2:
+                Conn += 1
+                listOFip.append(["IP Address:", f"{con}", "is currently", "connected"])
+            elif CountProcess == 1:
+                NotConn += 1
+                subprocess.Popen.kill(ShowProcess)
+                listOFip.append(["IP Address:", f"{con}", "is currently", "not connected"])
+            else:
+                listOFip.append("Something went wrong! Please try it again.")
+        listOFip.insert(0, [f"Not connected devices: {NotConn}"])
+        listOFip.insert(0, [f"Connected devices: {Conn}"])
+
+
+    elif plat == "Windows":
+        num = int(num)+1
+        dev = device()
+        BASIC_IP = list(dev[4])
+        BASIC_IP.pop()
+        BASIC_IP = "".join(BASIC_IP)
+        listOFip = []
+        Conn = 0
+        NotConn = 0
+
+        for y in range(1, num):
+            ADDRESS = BASIC_IP + str(y)
+            ShowProcess = subprocess.Popen(["ping", ADDRESS, "-t", "-n", "1"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = ShowProcess.communicate()
+            out = out.split()
+            if b'unreachable.' in out:
+                NotConn += 1
+                listOFip.append(["IP Address:", f"{ADDRESS}", "is currently", "not connected"])
+            else:
+                Conn += 1
+                listOFip.append(["IP Address:", f"{ADDRESS}", "is currently", "connected"])
+        listOFip.insert(0, [f"Not connected devices: {NotConn}"])
+        listOFip.insert(0, [f"Connected devices: {Conn}"])
+
+    return listOFip
+
+
+
+def who(current_device = []):
+>>>>>>> add_parameter
     plat = platform.system()
     if plat == "Linux":
         if os.getuid() == 1000:
@@ -37,24 +104,32 @@ def who():
             pass
 
         WhoList = []
-        dev = device()
+        if current_device == []:
+            dev = device()
+        else: dev = current_device
         MyIP = dev[4]
         MyMac = dev[2]
         name = dev[0]
         product_name = dev[1]
 
         nm = nmap.PortScanner()
-        host = MyIP + "/24"
+        host = Host_to_Gateway(MyIP) + "/24"
         dictList = nm.scan(hosts=host, arguments='-sn')
         scan = dictList.get("scan")
 
         YourDeviceList = ["IP Address:", MyIP, "Mac Address:", MyMac, "Device:", f"{name} {product_name} (Your device)"]
         
         for IP in scan:
-            vendor = scan[IP]
-            vendor = vendor.get("vendor")
-            for MAC in vendor:
-                WhoList.append(["IP Address:", IP, "Mac Address:", MAC, "Device:", vendor[MAC]])
+            connected_device = scan[IP]
+            addresses = connected_device.get("addresses")
+            vendor = connected_device.get("vendor")
+
+            ip_addr = addresses.get("ipv4")
+            if ip_addr == MyIP: continue
+            
+            MAC_addr = addresses.get("mac")
+            dealer = vendor.get(MAC_addr)
+            WhoList.append(["IP Address:", ip_addr, "Mac Address:", MAC_addr, "Device:", dealer])
 
         WhoList.append(YourDeviceList)
 
@@ -189,10 +264,43 @@ def device():
         except:
             Gateway = "unknown"
 
+<<<<<<< HEAD
         try:
             SSID = WifiName
             if SSID == "unknown":
                 password = "unknown"
+=======
+        Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
+        Gateway = Gateway.stdout.readline()
+        Gateway = Gateway.decode("utf-8").split()[1]
+
+        SSID = WifiName
+        if SSID == "":
+            SSID = WiredConName()
+            SSID = SSID.replace(" ", "<<<<")
+        ShowProcess3 = subprocess.Popen(["ls", "/etc/NetworkManager/system-connections"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        res1, erra = ShowProcess3.communicate()
+        res1 = res1.decode()
+        res1 = res1.replace(" ", "<<<<")
+        res1 = res1.split()
+
+        for i in range(0, len(res1)):
+            if SSID in res1[i]:
+                try:
+                    outOF = res1[i].replace("<<<<", " ")
+                    comm = f"sudo cat '/etc/NetworkManager/system-connections/{outOF}' | grep psk="
+                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
+                    res2, erra2 = ShowProcess2.communicate()
+                    res2 = res2.decode()
+                    if res2 != "":
+                        res2 = res2.replace("\n", "")
+                        password = res2.replace("psk=", "")
+                    else:
+                        password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+#                        pass
+                except:
+                    password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+>>>>>>> add_parameter
             else:
                 ShowProcess3 = subprocess.Popen(["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", SSID], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 password, erra = ShowProcess3.communicate()
