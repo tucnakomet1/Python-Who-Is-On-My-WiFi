@@ -30,9 +30,6 @@ def license():
         os.system("clear")
         print(SeeLicense)
 
-<<<<<<< HEAD
-def who():
-=======
 def SeeConnect(num):
     plat = platform.system()
     if plat == "Linux":
@@ -95,7 +92,6 @@ def SeeConnect(num):
 
 
 def who(current_device = []):
->>>>>>> add_parameter
     plat = platform.system()
     if plat == "Linux":
         if os.getuid() == 1000:
@@ -264,12 +260,6 @@ def device():
         except:
             Gateway = "unknown"
 
-<<<<<<< HEAD
-        try:
-            SSID = WifiName
-            if SSID == "unknown":
-                password = "unknown"
-=======
         Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
         Gateway = Gateway.stdout.readline()
         Gateway = Gateway.decode("utf-8").split()[1]
@@ -300,7 +290,6 @@ def device():
 #                        pass
                 except:
                     password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
->>>>>>> add_parameter
             else:
                 ShowProcess3 = subprocess.Popen(["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", SSID], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 password, erra = ShowProcess3.communicate()
