@@ -10,8 +10,3 @@ def WiredConName():
         WiredName = WiredName[0]
         return WiredName
 
-def Host_to_Gateway(host):
-    GatewayIP = host.split(".")
-    GatewayIP[3] = "1"
-    GatewayIP = ".".join(GatewayIP)
-    return GatewayIP
