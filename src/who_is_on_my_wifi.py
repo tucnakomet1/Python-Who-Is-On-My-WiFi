@@ -9,7 +9,7 @@ import getmac
 import nmap
 import os
 
-from wired_connection import WiredConName, Host_to_Gateway
+from wired_connection import WiredConName
 
 if platform.system() == "Windows":
     import wmi
@@ -48,23 +48,17 @@ def who(current_device = []):
         product_name = dev[1]
 
         nm = nmap.PortScanner()
-        host = Host_to_Gateway(MyIP) + "/24"
+        host = MyIP + "/24"
         dictList = nm.scan(hosts=host, arguments='-sn')
         scan = dictList.get("scan")
 
         YourDeviceList = ["IP Address:", MyIP, "Mac Address:", MyMac, "Device:", f"{name} {product_name} (Your device)"]
         
         for IP in scan:
-            connected_device = scan[IP]
-            addresses = connected_device.get("addresses")
-            vendor = connected_device.get("vendor")
-
-            ip_addr = addresses.get("ipv4")
-            if ip_addr == MyIP: continue
-            
-            MAC_addr = addresses.get("mac")
-            dealer = vendor.get(MAC_addr)
-            WhoList.append(["IP Address:", ip_addr, "Mac Address:", MAC_addr, "Device:", dealer])
+            vendor = scan[IP]
+            vendor = vendor.get("vendor")
+            for MAC in vendor:
+                WhoList.append(["IP Address:", IP, "Mac Address:", MAC, "Device:", vendor[MAC]])
 
         WhoList.append(YourDeviceList)
 
@@ -199,40 +193,19 @@ def device():
         except:
             Gateway = "unknown"
 
-        Gateway = subprocess.Popen("grep 0 /etc/resolv.conf", shell=True, stdout=subprocess.PIPE)
-        Gateway = Gateway.stdout.readline()
-        Gateway = Gateway.decode("utf-8").split()[1]
-
-        SSID = WifiName
-        if SSID == "":
-            SSID = WiredConName()
-            SSID = SSID.replace(" ", "<<<<")
-        ShowProcess3 = subprocess.Popen(["ls", "/etc/NetworkManager/system-connections"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        res1, erra = ShowProcess3.communicate()
-        res1 = res1.decode()
-        res1 = res1.replace(" ", "<<<<")
-        res1 = res1.split()
-
-        for i in range(0, len(res1)):
-            if SSID in res1[i]:
-                try:
-                    outOF = res1[i].replace("<<<<", " ")
-                    comm = f"sudo cat '/etc/NetworkManager/system-connections/{outOF}' | grep psk="
-                    ShowProcess2 = subprocess.Popen(comm, stdout=subprocess.PIPE, stderr=None, shell=True)
-                    res2, erra2 = ShowProcess2.communicate()
-                    res2 = res2.decode()
-                    if res2 != "":
-                        res2 = res2.replace("\n", "")
-                        password = res2.replace("psk=", "")
-                    else:
-                        password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
-#                        pass
-                except:
-                    password = "<unknown password>... You should try this command as `sudo` or as `Administrator`..."
+        try:
+            SSID = WifiName
+            if SSID == "unknown":
+                password = "unknown"
+            elif SSID == "":
+                SSID = WiredConName()
+                SSID = SSID.replace(" ", "<<<<")
             else:
                 ShowProcess3 = subprocess.Popen(["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", SSID], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 password, erra = ShowProcess3.communicate()
                 password = password.decode("utf-8").split()[0]
+        except:
+            password = "unknown"
     
         DeviceList = [nam, product_name, MAC, IP_host, IP_All, hostname, WifiName, Gateway, DNS1, DNS2, password]
     
