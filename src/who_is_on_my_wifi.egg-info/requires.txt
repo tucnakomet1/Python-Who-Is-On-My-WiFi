@@ -1,2 +1,2 @@
 getmac
-python-nmap
+scapy

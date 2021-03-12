@@ -1,0 +1,49 @@
+#! /bin/bash
+
+
+echo ""
+echo -e "██╗    ██╗██╗ ██████╗ ███╗   ███╗"
+echo -e "██║    ██║██║██╔═══██╗████╗ ████║"
+echo -e "██║ █╗ ██║██║██║   ██║██╔████╔██║"
+echo -e "██║███╗██║██║██║   ██║██║╚██╔╝██║"
+echo -e "╚███╔███╔╝██║╚██████╔╝██║ ╚═╝ ██║"
+echo -e " ╚══╝╚══╝ ╚═╝ ╚═════╝ ╚═╝     ╚═╝"
+echo ""
+
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        read -p "Are you sure you want to install who-is-on-my-wifi? [Y/n]: " ask0
+        if [[ $ask0 == "Y" || $ask0 == "y" ]]; then
+                distro=$(which apt)
+                if [ $distro == "" ]; then
+                        sudo python3 setup.py install
+                        echo "Your distribution is not Debian based. You have to install everything manually."
+                        echo "Please install 'scapy, net-tools'"
+                        exit
+                fi
+                sudo pip3 install scapy
+                sudo pip3 install getmac
+                sudo python3 setup.py install
+                comm=$(which scapy)
+                echo -e "\n"$comm
+                if [ comm == "" ]; then
+                        echo -e "\nInstalling scapy..."
+                        sudo apt-get install scapy -y
+                fi  
+                nett=$(which route)
+                if [ comm == "" ]; then
+                        echo -e "\nInstalling net-tools..."
+                        sudo apt-get install net-tools -y
+                fi
+
+                sudo python3 setup.py install
+
+                echo -e "\nYou should restart terminal for better result..."
+                read -p "Do you want to exit terminal? [Y/n]: " ask
+                echo ""
+
+                if [[ $ask == "Y" || $ask == "y" ]]; then
+                        kill -9 $PPID
+                fi
+        fi
+fi

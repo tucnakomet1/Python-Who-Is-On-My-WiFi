@@ -1,1 +1,3 @@
+device
+who
 who_is_on_my_wifi
