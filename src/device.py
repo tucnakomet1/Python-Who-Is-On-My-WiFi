@@ -19,7 +19,7 @@ if platform.system()== "Windows":
 def device():
     plat = platform.system()
 
-    if plat == "Linux" and return_check == 0:
+    if plat == "Linux":
         try:
             try:
                 nam = subprocess.Popen("sudo dmidecode -s system-manufacturer", shell=True, stdout=subprocess.PIPE)
