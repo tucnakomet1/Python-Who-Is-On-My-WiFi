@@ -1,32 +1,35 @@
 <h1 align="center">Who is on my WiFi</h1>
 
-<a href="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/tree/master/images/logo/logo.png"><img src="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/tree/master/images/logo/logo_75x75.png" alt="info"  style="max-width:10%;" align="left" hspace="10"></a>Who-is-on-my-wifi is a Python3 cli project that allows you to see who is stealing your WiFI network, scan your WiFI and show you how many devices are connected. Software can be installed on any Windows and Linux device (Mac not verified).
+<p align="center"><img src="https://img.shields.io/github/stars/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub Repo stars">
+<img src="https://img.shields.io/github/watchers/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub watchers"> 
+<img src="https://img.shields.io/github/followers/tucnakomet1?style=social" alt="GitHub followers">
+<img src="https://img.shields.io/github/downloads/tucnakomet1/Python-Who-Is-On-My-WiFi/total?color=%23ff000&amp;logo=GitHub" alt="GitHub all releases">
+<img src="https://img.shields.io/github/v/release/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub release (latest by date)">
+<img src="https://img.shields.io/github/repo-size/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub repo size">
+<img src="https://img.shields.io/github/license/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub"> 
+<img src="https://img.shields.io/github/languages/top/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub top language"></p>
+
+<a href="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/images/logo/logo.png"><img src="https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/images/logo/logo_75x75.png" alt="info"  style="max-width:10%;" align="left" hspace="10"></a>Who-is-on-my-wifi is a Python3 cli project that allows you to see who is stealing your WiFI network, scan your WiFI and show you how many devices are connected. Software can be installed on any Windows and Linux device (Mac not verified).
 <h2></h2>
 
 <h2>Table of contents</h2>
 
-<details>
-<summary><a href="#install">INSTALLATION</a></summary><br/>
-<ul><ul>
-<li><a href = "#pip">Pip</a></li>
-<li><a href = "#tar">Tarball/ Source</a></li></ul></ul>
-</details>
-<details>
-<summary><a href = "#usage">USAGE</a></summary><br/>
-<ul><ul>
-<li><a href="#module">Command</a></li><ul>
-<li><a href = "#basicC">Basics</a></li>
-<li><a href = "#whoC">How to see who is on my wifi?</a></li>
-<li><a href = "#infoC">How to get information about my device?</a></li></ul>
-<li><a href="#python">Python3</a></li><ul>
-<li><a href = "#basicP">Basics</a></li>
-<li><a href = "#whoP">How to see who is on my wifi?</a></li>
-<li><a href = "#infoP">How to get information about my device?</a></li></ul>
-<li><a href = "#error">Error</a></li><ul>
-<li><a href = "#winpcap">WinPcapError:</a></li>
-<li><a href = "#route">route: not found:</a></li></ul></ul></ul>
-</details>
-
+* <a href="#install">INSTALLATION</a><br/>
+	* <a href = "#pip">Pip</a><br/>
+	* <a href = "#deb">Debian based</a><br/>
+	* <a href = "#tar">Tarball/ Source</a><br/>
+* <a href = "#usage">USAGE</a><br/>
+	* <a href="#module">Command</a><br/>
+		* <a href = "#basicC">Basics</a><br/>
+		* <a href = "#whoC">How to see who is on my wifi?</a><br/>
+		* <a href = "#infoC">How to get information about my device?</a><br/>
+	* <a href="#python">Python3</a><br/>
+		* <a href = "#basicP">Basics</a><br/>
+		* <a href = "#whoP">How to see who is on my wifi?</a><br/>
+		* <a href = "#infoP">How to get information about my device?</a><br/>
+	* <a href = "#error">Error</a><br/>
+		* <a href = "#winpcap">WinPcapError:</a><br/>
+		* <a href = "#route">route: not found:</a><br/>
 * <a href = "#screen">SCREENSHOTS</a><br/>
 * <a href = "https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases">RELEASES</a><br/>
 * <a href = "#survey">SURVEY</a></br>
@@ -36,13 +39,30 @@
 <br/>
 
 <h2 id="install">INSTALLATION</h2>
-<details>
-<summary></summary>
+
 
 Windows need <a href="https://www.winpcap.org/install/">WinPcap</a>.<br/>
 <h3 id="pip">Pip</h3>
 
 `pip3 install who-is-on-my-wifi` <br/>
+
+<h3 id="deb">Debian based</h3>
+
+Download the latest deb for example from [release page](https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases) and follow these commands.
+
+```bash
+### Download commands ###
+wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/tag/1.3.3/who-is-on-my-wifi-v1.3.3.deb
+
+### Install ###
+sudo dpkg -i who-is-on-my-wifi-v1.3.3.deb
+rm who-is-on-my-wifi-v1.3.3.deb #remove useless package
+
+### Uninstall ###
+sudo dpkg -r who-is-on-my-wifi-v1.3.3
+```
+
+<br/>
 
 <h3 id="tar">Tarball/ Source</h3>
 
@@ -65,12 +85,10 @@ sudo chmod +x install
 ```
 
 <br/><br/><br/>
-</details>
 
 
 <h2 id="usage">USAGE</h2>
-<details>
-<summary></summary>
+
 Click for the expand... <br/><br/>
 <details>
 <summary>Command</summary>
@@ -105,7 +123,7 @@ Visit my GitHub: https://github.com/tucnakomet1
 
 ```shell
 linux@name:~$ sudo wiom -w 			# default scanning time is 10 sec
-linux@name:~$ sudo wiom -w -t 5 	# scanning wifi for 5 sec
+linux@name:~$ sudo wiom -w -t 5 		# scanning wifi for 5 sec
 ```
 
 <br/>
@@ -230,12 +248,11 @@ To fix this you have to download it using `sudo apt-get install net-tools`
 </details>
 
 <br/><br/><br/>
-</details>
 
 <h2 id="screen">SCREENSHOTS</h2>
 
-![device](https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/tree/master/images/screenshots/device_1_3.jpg)<br/>
-![who](https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/tree/master/images/screenshots/who_1_3.jpg)<br/>
+![device](https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/images/screenshots/device_1_3.jpg)<br/>
+![who](https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/images/screenshots/who_1_3.jpg)<br/>
 <br/><br/><br/>
 
 <h2 id="survey"> SURVEY </h2>
@@ -243,7 +260,7 @@ To fix this you have to download it using `sudo apt-get install net-tools`
 <p align="center" >Do you want to improve Who-Is-On-My-WiFi? Do you want to rate it? Or do you want to react for it?</p>
 <p align="center"><b>Fill out</b> this survey to help me <b>improve</b> this module!</p>
 
-[![survey](https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/tree/master/images/screenshots/survey.png "Who-Is-On-My-WiFi survey!")](http://www.survey-maker.com/Q4H2XR1KC)
+[![survey](https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/images/screenshots/survey.png "Who-Is-On-My-WiFi survey!")](http://www.survey-maker.com/Q4H2XR1KC)
 <br/><br/><br/>
 
 <h2 id="todo"> TO-DO LIST </h2>

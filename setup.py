@@ -11,7 +11,7 @@ except:
 
 setup(
 	name='who-is-on-my-wifi',
-	version='1.3.0',
+	version='1.3.3',
 	scripts=["src/who_is_on_my_wifi.py", "src/who.py", "src/device.py"],
 	description="Help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected!",
 	url="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi",

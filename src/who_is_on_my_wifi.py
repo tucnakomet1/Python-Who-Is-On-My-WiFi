@@ -3,7 +3,6 @@ from device import *
 from who import *
 
 import who_is_on_my_wifi
-import urllib.request
 import subprocess
 import argparse
 import textwrap
@@ -11,6 +10,7 @@ import platform
 import inspect
 import socket
 import getmac
+import sys
 import os
 
 if platform.system() == "Windows":
@@ -27,7 +27,7 @@ def license():
     lic_url = "https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/LICENSE.txt"
     lic = urllib.request.urlopen(lic_url)
     lic = lic.read().decode("utf-8")
-    print(lic)        
+    print(lic)    
 
 def help():
     PURPLE, CYAN, DARKCYAN, BLUE, GREEN, YELLOW, RED, BOLD, UNDER, END = '\033[95m', '\033[96m', '\033[36m', '\033[94m', '\033[92m', '\033[93m', '\033[91m', '\033[1m', '\033[4m', '\033[0m'
@@ -35,29 +35,62 @@ def help():
         print(f"""
         
             {UNDER}>>>> Welcome to wiom help page!  What's wrong? <<<<{END}
-                   
+            
+            
     --version | 1.3.0
+
+    {UNDER}{BOLD}About:{END}
+        Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
+    
+    
+    
     
     
     {UNDER}{BOLD}Usage:{END}
         {RED}>>> {YELLOW}import {CYAN}who_is_on_my_wifi{END}
         
+        
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}help(){END} {BOLD}{RED}# show this help page{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END} {BOLD}{RED}# show contact{END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){END} {BOLD}{RED}# show license{END}
 
+
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}who(n){END}  {BOLD}{RED}# see who is on my wifi (int('n') is scanning time - optional; default is 10){END}
         {RED}>>> {CYAN}who_is_on_my_wifi{END}.{GREEN}device(){END} {BOLD}{RED}# see information about your device
-
+    
+    
+    
+    
+    
+    {UNDER}{BOLD}CONTACT:{END}
+        {UNDER}My Gmail:{END} tucnakomet@gmail.com
+        {UNDER}My GitHub:{END} https://github.com/tucnakomet1/
+        {CYAN}who_is_on_my_wifi{END}.{GREEN}contact(){END}
+    
+    
+    
+    
+    
+    {UNDER}{BOLD}License:{END}
+        MIT License		
+        {UNDER}You can see{END} → {CYAN}who_is_on_my_wifi{END}.{GREEN}license(){RED}{END}
+                    → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
         """)
     
     else:
         print(f"""
         
-            >>>> Welcome to help page!  What's wrong? <<<<      
+            >>>> Welcome to help page!  What's wrong? <<<<
+            
 
     --version | 1.3.0
-      
+    
+    
+    About:
+        Who-Is-On-My-WIFi module help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected.
+    
+    
+    
     
     
     Usage:
@@ -70,9 +103,24 @@ def help():
         >>> who_is_on_my_wifi.who(n) # see who is on my wifi (int('n') is scanning time - optional; default is 10)
         >>> who_is_on_my_wifi.device() # see information about your device
     
+    
+    
+    
+    
+    CONTACT:
+        My Gmail: tucnakomet@gmail.com
+        My GitHub: https://github.com/tucnakomet1/
+        who_is_on_my_wifi.contact()
+        
+        
+        
+        
+        
+    License:
+        MIT License		
+        You can see → who_is_on_my_wifi.license()
+                    → https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt
         """)
-
-
 
 def main():
     wrapper = textwrap.TextWrapper(width=70)
@@ -83,16 +131,14 @@ def main():
                                         Visit my GitHub: https://github.com/tucnakomet1
                                         """))
 
+    """subparsers = parser.add_subparsers(dest='command',
+                                   help='List of commands')"""
+
     parser.add_argument(
         '-v', '--version',
         action='version', 
         version='%(prog)s 1.3.0', 
         help='show current version')
-
-    parser.add_argument(
-        '-l', '--license', 
-        action='store_true', 
-        help='show Open Source License')
 
     parser.add_argument(
         '-c', '--contact', 
@@ -117,7 +163,6 @@ def main():
         required=False,
         default=10,
         help="int supplement for '-w' command (scanning '-t' seconds)")
-
 
     args = parser.parse_args()
 
@@ -161,12 +206,12 @@ ISP:                {dev[23]}
         for j in range(0, len(WHO)):
             comm = f"\n{WHO[j][0]} {WHO[j][1]}\n{WHO[j][2]} {WHO[j][3]}\n{WHO[j][4]} {WHO[j][5]}\n"
             print(comm)
-
+    
     if args.contact:
         contact()
 
-    if args.license:
-        license()
+    if len(sys.argv) == 1:
+        parser.print_help()
 
 if __name__ == "__main__":
     main()
