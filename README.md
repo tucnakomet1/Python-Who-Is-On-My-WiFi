@@ -1,6 +1,5 @@
 <h1 align="center">Who is on my WiFi</h1>
 
-<<<<<<< HEAD
 <p align="center"><img src="https://img.shields.io/github/stars/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub Repo stars">
 <img src="https://img.shields.io/github/watchers/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub watchers"> 
 <img src="https://img.shields.io/github/followers/tucnakomet1?style=social" alt="GitHub followers">
@@ -10,8 +9,6 @@
 <img src="https://img.shields.io/github/license/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub"> 
 <img src="https://img.shields.io/github/languages/top/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub top language"></p>
 
-=======
->>>>>>> fb0f03ed03cd02f1862f2aee92a70c91ade20347
 <a href="https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/images/logo/logo.png"><img src="https://raw.githubusercontent.com/tucnakomet1/Python-Who-Is-On-My-WiFi/master/images/logo/logo_75x75.png" alt="info"  style="max-width:10%;" align="left" hspace="10"></a>Who-is-on-my-wifi is a Python3 cli project that allows you to see who is stealing your WiFI network, scan your WiFI and show you how many devices are connected. Software can be installed on any Windows and Linux device (Mac not verified).
 <h2></h2>
 
@@ -19,10 +16,7 @@
 
 * <a href="#install">INSTALLATION</a><br/>
 	* <a href = "#pip">Pip</a><br/>
-<<<<<<< HEAD
 	* <a href = "#deb">Debian based</a><br/>
-=======
->>>>>>> fb0f03ed03cd02f1862f2aee92a70c91ade20347
 	* <a href = "#tar">Tarball/ Source</a><br/>
 * <a href = "#usage">USAGE</a><br/>
 	* <a href="#module">Command</a><br/>
@@ -58,7 +52,7 @@ Download the latest deb for example from [release page](https://github.com/tucna
 
 ```bash
 ### Download commands ###
-wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/tag/1.3.3/who-is-on-my-wifi-v1.3.3.deb
+wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/1.3.3/who-is-on-my-wifi-v1.3.3.deb
 
 ### Install ###
 sudo dpkg -i who-is-on-my-wifi-v1.3.3.deb
