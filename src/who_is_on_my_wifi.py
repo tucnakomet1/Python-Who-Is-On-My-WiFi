@@ -3,20 +3,10 @@ import argparse
 import textwrap
 import platform
 if platform.system() == "Windows": import wmi
-from scapy.all import *
 from device import *
-from who import *
 
 import who_is_on_my_wifi
-import subprocess
-import argparse
-import textwrap
-import platform
-import inspect
-import socket
-import getmac
 import sys
-import os
 
 
 def contact():

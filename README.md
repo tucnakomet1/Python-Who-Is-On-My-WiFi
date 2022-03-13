@@ -16,21 +16,21 @@
 <h2>Table of contents</h2>
 
 * <a href="#install">INSTALLATION</a><br/>
-	* <a href = "#pip">Pip</a><br/>
-	* <a href = "#deb">Debian based</a><br/>
-	* <a href = "#tar">Tarball/ Source</a><br/>
+  * <a href = "#pip">Pip</a><br/>
+  * <a href = "#deb">Debian based</a><br/>
+  * <a href = "#tar">Tarball/ Source</a><br/>
 * <a href = "#usage">USAGE</a><br/>
-	* <a href="#module">Command</a><br/>
-		* <a href = "#basicC">Basics</a><br/>
-		* <a href = "#whoC">How to see who is on my wifi?</a><br/>
-		* <a href = "#infoC">How to get information about my device?</a><br/>
-	* <a href="#python">Python3</a><br/>
-		* <a href = "#basicP">Basics</a><br/>
-		* <a href = "#whoP">How to see who is on my wifi?</a><br/>
-		* <a href = "#infoP">How to get information about my device?</a><br/>
-	* <a href = "#error">Error</a><br/>
-		* <a href = "#winpcap">WinPcapError:</a><br/>
-		* <a href = "#route">route: not found:</a><br/>
+  * <a href="#module">Command</a><br/>
+    * <a href = "#basicC">Basics</a><br/>
+    * <a href = "#whoC">How to see who is on my wifi?</a><br/>
+    * <a href = "#infoC">How to get information about my device?</a><br/>
+  * <a href="#python">Python3</a><br/>
+    * <a href = "#basicP">Basics</a><br/>
+    * <a href = "#whoP">How to see who is on my wifi?</a><br/>
+    * <a href = "#infoP">How to get information about my device?</a><br/>
+  * <a href = "#error">Error</a><br/>
+    * <a href = "#winpcap">WinPcapError:</a><br/>
+    * <a href = "#route">route: not found:</a><br/>
 * <a href = "#screen">SCREENSHOTS</a><br/>
 * <a href = "#todo">TO-DO LIST</a><br/>
 * <a href = "#license">LICENSE</a><br/>
@@ -40,6 +40,7 @@
 
 
 Windows need <a href="https://www.winpcap.org/install/">WinPcap</a>.<br/>
+
 <h3 id="pip">Pip</h3>
 
 `pip3 install who-is-on-my-wifi` <br/>
@@ -111,6 +112,7 @@ optional arguments:
 
 GitHub: <https://github.com/tucnakomet1>
 ```
+
 <br/>
 
 <h4 id="whoC"> How to see who is on my wifi? </h4>
@@ -213,6 +215,7 @@ Map:                {dev[23]}
 ISP:                {dev[24]}
 """)
 ```
+
 <br/>
 
 <h3 id = "error"> Error </h3>
@@ -277,4 +280,15 @@ in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
