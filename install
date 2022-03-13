@@ -1,0 +1,56 @@
+#! /bin/bash
+
+echo ""
+echo -e "██╗    ██╗██╗ ██████╗ ███╗   ███╗"
+echo -e "██║    ██║██║██╔═══██╗████╗ ████║"
+echo -e "██║ █╗ ██║██║██║   ██║██╔████╔██║"
+echo -e "██║███╗██║██║██║   ██║██║╚██╔╝██║"
+echo -e "╚███╔███╔╝██║╚██████╔╝██║ ╚═╝ ██║"
+echo -e " ╚══╝╚══╝ ╚═╝ ╚═════╝ ╚═╝     ╚═╝"
+echo ""
+echo " <-> version v1.3.4 <->"
+echo " <-> https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi <->"
+echo ""
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        read -p "Are you sure you want to install who-is-on-my-wifi? [Y/n]: " ask0
+        if [[ $ask0 == "Y" || $ask0 == "y" ]]; then
+                PW=$pwd
+                sudo pip3 install scapy
+                sudo pip3 install getmac
+                sudo python3 setup.py install
+                                
+                apppth="/usr/share/applications/wiom.desktop"
+
+                sudo touch $apppth
+                sudo echo "[Desktop Entry]" > $apppth
+                sudo echo "Version=1.3.4" >> $apppth
+                sudo echo "Type=Application" >> $apppth
+                sudo echo "Name=Who-Is-On-My-WiFi" >> $apppth
+                sudo echo "Comment=See who is stealing your WiFI network! Scan your WiFI! See how many devices are connected." >> $apppth
+                sudo echo "Exec=$pw/src/who_is_on_my_wifi.py" >> $apppth
+                sudo echo "Path=$PW" >> $apppth
+                sudo echo "Icon=$PW/images/logo/logo.png" >> $apppth
+                sudo echo "Terminal=true" >> $apppth
+                sudo echo "StartupNotify=false" >> $apppth
+                sudo echo "Categories=Network;" >> $apppth
+
+                sudo chmod +x $apppth
+                
+                distro=$(which apt)
+                nett=$(which route)
+                if [ comm == "" ]; then
+                        echo -e "\nInstalling net-tools..."
+                        sudo apt-get install net-tools -y
+                fi
+
+                if [ $distro == "" ]; then
+                        if [ comm == "" ]; then
+                                echo "Your distribution is not Debian based."
+                                echo "Please install 'net-tools' otherwise app won't work."
+                        fi
+                        exit
+                fi
+
+        fi
+fi
