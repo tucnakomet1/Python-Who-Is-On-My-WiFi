@@ -98,7 +98,7 @@ def calculate_signal_strength():
 def get_route(public_IP):
     try:
         response = urllib.request.urlopen(f"https://ip-api.io/json/{public_IP}")
-        return response.read().decode("utf-8").replace(',', '":').split('":')
+        return response.read().decode("utf-8").replace(',', '":').replace("}", "").split('":')
     except:
         return "unknown"
 
@@ -117,14 +117,14 @@ def device():
     if public_IP == "unknown": public_IP = get_output("ifconfig.me")
 
     route = get_route(public_IP)
-    country = get_route_arg(route, 5)
-    regionN = get_route_arg(route, 9)
-    city = get_route_arg(route, 13)
-    zipC = get_route_arg(route, 15)
-    lat = get_route_arg(route, 19)
-    lon = get_route_arg(route, 21)
+    country = get_route_arg(route, 9)
+    regionN = get_route_arg(route, 33)
+    city = get_route_arg(route, 3)
+    zipC = get_route_arg(route, len(route)-1)
+    lat = get_route_arg(route, 23)
+    lon = get_route_arg(route, 25)
     maps = f"https://www.google.com/maps/@{lat},{lon},14z"
-    org = get_route_arg(route, 25)
+    org = get_route_arg(route, 29)
 
     if plat == "Linux":
         nam = get_output("sudo dmidecode -s system-manufacturer")

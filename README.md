@@ -2,7 +2,6 @@
 
 <p align="center"><img src="https://img.shields.io/github/stars/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub Repo stars">
 <img src="https://img.shields.io/github/watchers/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub watchers"> 
-<img src="https://img.shields.io/github/followers/tucnakomet1?style=social" alt="GitHub followers">
 <img src="https://img.shields.io/github/downloads/tucnakomet1/Python-Who-Is-On-My-WiFi/total?color=%23ff000&amp;logo=GitHub" alt="GitHub all releases">
 <img src="https://img.shields.io/github/v/release/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub release (latest by date)">
 <img src="https://img.shields.io/github/repo-size/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub repo size">
@@ -56,14 +55,14 @@ Or download the latest deb for example from [release page](https://github.com/tu
 
 ```bash
 ### Download commands ###
-wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/1.3.4/who-is-on-my-wifi-v1.3.4.deb
+wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/1.3.5/who-is-on-my-wifi-v1.3.5.deb
 
 ### Install ###
-sudo dpkg -i who-is-on-my-wifi-v1.3.4.deb
-rm who-is-on-my-wifi-v1.3.4.deb #remove useless package
+sudo dpkg -i who-is-on-my-wifi-v1.3.5.deb
+rm who-is-on-my-wifi-v1.3.5.deb #remove useless package
 
 ### Uninstall ###
-sudo dpkg -r who-is-on-my-wifi-v1.3.4
+sudo dpkg -r who-is-on-my-wifi-v1.3.5
 ```
 
 <br/>
@@ -237,9 +236,11 @@ To fix this you have to download it using `sudo apt-get install net-tools`
 
 
 <h2 id="screen">SCREENSHOTS</h2>
-| `wiom -d`                                    | `wiom -w`                              |
+
+|                  `wiom -d`                   |               `wiom -w`                |
 | -------------------------------------------- | -------------------------------------- |
 | ![device](images/screenshots/device_1_3.jpg) | ![who](images/screenshots/who_1_3.jpg) |
+
 
 <br/>
 
@@ -260,7 +261,6 @@ To fix this you have to download it using `sudo apt-get install net-tools`
 <h2 id="todo"> TO-DO LIST </h2>
 
 - [ ] Validated MacOS support
-- [ ] Add GUI
 - [ ] Add list of verified devices
 - [ ] Add WiFi Kill option
 <br/>

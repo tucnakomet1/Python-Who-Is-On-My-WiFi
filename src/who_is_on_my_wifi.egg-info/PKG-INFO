@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: who-is-on-my-wifi
-Version: 1.3.4
+Version: 1.3.5
 Summary: Help you to find who is stealing your WiFI network, scan your WiFI and show you how many devices are currently connected!
 Home-page: https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi
 Author: Karel Velicka
@@ -10,7 +10,6 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         
         <p align="center"><img src="https://img.shields.io/github/stars/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub Repo stars">
         <img src="https://img.shields.io/github/watchers/tucnakomet1/Python-Who-Is-On-My-WiFi?style=social" alt="GitHub watchers"> 
-        <img src="https://img.shields.io/github/followers/tucnakomet1?style=social" alt="GitHub followers">
         <img src="https://img.shields.io/github/downloads/tucnakomet1/Python-Who-Is-On-My-WiFi/total?color=%23ff000&amp;logo=GitHub" alt="GitHub all releases">
         <img src="https://img.shields.io/github/v/release/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub release (latest by date)">
         <img src="https://img.shields.io/github/repo-size/tucnakomet1/Python-Who-Is-On-My-WiFi" alt="GitHub repo size">
@@ -24,21 +23,21 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         <h2>Table of contents</h2>
         
         * <a href="#install">INSTALLATION</a><br/>
-        	* <a href = "#pip">Pip</a><br/>
-        	* <a href = "#deb">Debian based</a><br/>
-        	* <a href = "#tar">Tarball/ Source</a><br/>
+          * <a href = "#pip">Pip</a><br/>
+          * <a href = "#deb">Debian based</a><br/>
+          * <a href = "#tar">Tarball/ Source</a><br/>
         * <a href = "#usage">USAGE</a><br/>
-        	* <a href="#module">Command</a><br/>
-        		* <a href = "#basicC">Basics</a><br/>
-        		* <a href = "#whoC">How to see who is on my wifi?</a><br/>
-        		* <a href = "#infoC">How to get information about my device?</a><br/>
-        	* <a href="#python">Python3</a><br/>
-        		* <a href = "#basicP">Basics</a><br/>
-        		* <a href = "#whoP">How to see who is on my wifi?</a><br/>
-        		* <a href = "#infoP">How to get information about my device?</a><br/>
-        	* <a href = "#error">Error</a><br/>
-        		* <a href = "#winpcap">WinPcapError:</a><br/>
-        		* <a href = "#route">route: not found:</a><br/>
+          * <a href="#module">Command</a><br/>
+            * <a href = "#basicC">Basics</a><br/>
+            * <a href = "#whoC">How to see who is on my wifi?</a><br/>
+            * <a href = "#infoC">How to get information about my device?</a><br/>
+          * <a href="#python">Python3</a><br/>
+            * <a href = "#basicP">Basics</a><br/>
+            * <a href = "#whoP">How to see who is on my wifi?</a><br/>
+            * <a href = "#infoP">How to get information about my device?</a><br/>
+          * <a href = "#error">Error</a><br/>
+            * <a href = "#winpcap">WinPcapError:</a><br/>
+            * <a href = "#route">route: not found:</a><br/>
         * <a href = "#screen">SCREENSHOTS</a><br/>
         * <a href = "#todo">TO-DO LIST</a><br/>
         * <a href = "#license">LICENSE</a><br/>
@@ -48,6 +47,7 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         
         
         Windows need <a href="https://www.winpcap.org/install/">WinPcap</a>.<br/>
+        
         <h3 id="pip">Pip</h3>
         
         `pip3 install who-is-on-my-wifi` <br/>
@@ -63,14 +63,14 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         
         ```bash
         ### Download commands ###
-        wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/1.3.4/who-is-on-my-wifi-v1.3.4.deb
+        wget https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/releases/download/1.3.5/who-is-on-my-wifi-v1.3.5.deb
         
         ### Install ###
-        sudo dpkg -i who-is-on-my-wifi-v1.3.4.deb
-        rm who-is-on-my-wifi-v1.3.4.deb #remove useless package
+        sudo dpkg -i who-is-on-my-wifi-v1.3.5.deb
+        rm who-is-on-my-wifi-v1.3.5.deb #remove useless package
         
         ### Uninstall ###
-        sudo dpkg -r who-is-on-my-wifi-v1.3.4
+        sudo dpkg -r who-is-on-my-wifi-v1.3.5
         ```
         
         <br/>
@@ -119,6 +119,7 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         
         GitHub: <https://github.com/tucnakomet1>
         ```
+        
         <br/>
         
         <h4 id="whoC"> How to see who is on my wifi? </h4>
@@ -221,6 +222,7 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         ISP:                {dev[24]}
         """)
         ```
+        
         <br/>
         
         <h3 id = "error"> Error </h3>
@@ -242,9 +244,11 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         
         
         <h2 id="screen">SCREENSHOTS</h2>
-        | `wiom -d`                                    | `wiom -w`                              |
+        
+        |                  `wiom -d`                   |               `wiom -w`                |
         | -------------------------------------------- | -------------------------------------- |
         | ![device](images/screenshots/device_1_3.jpg) | ![who](images/screenshots/who_1_3.jpg) |
+        
         
         <br/>
         
@@ -265,7 +269,6 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         <h2 id="todo"> TO-DO LIST </h2>
         
         - [ ] Validated MacOS support
-        - [ ] Add GUI
         - [ ] Add list of verified devices
         - [ ] Add WiFi Kill option
         <br/>
@@ -285,6 +288,17 @@ Description: <h1 align="center">Who is on my WiFi</h1>
         to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
         copies of the Software, and to permit persons to whom the Software is
         furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
         ```
         
 Platform: any

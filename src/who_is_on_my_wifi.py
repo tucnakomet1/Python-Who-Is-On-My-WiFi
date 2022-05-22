@@ -1,22 +1,32 @@
+from scapy.all import *
+from device import *
 from who import *
+
+import subprocess
 import argparse
 import textwrap
 import platform
-if platform.system() == "Windows": import wmi
-from device import *
-
-import who_is_on_my_wifi
+import inspect
+import socket
 import sys
+import os
 
+if platform.system() == "Windows": import wmi
+
+# contact links
 
 def contact():
     print("\n-- Gmail: <tucnakomet@gmail.com> \n-- GitHub: <https://github.com/tucnakomet1/>\n")
+
+
+# license link
 
 def license():
     print("""\nWho-Is-On-My-WiFi is under MIT open-source license...
     -- See: <https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi/blob/master/LICENSE.txt>\n""")
 
 
+# run device
 def device_():
     dev = device()
 	
@@ -36,6 +46,10 @@ Latitude:           {dev[21]} \nLongitude:          {dev[22]}
 Map:                {dev[23]} \nISP:                {dev[24]}
 	"""
     print(dvc)
+
+########
+# help #
+########
 
 def help():
     if platform.system() == "Linux":
@@ -58,6 +72,8 @@ who-is-on-my-wifi 1.3.4
     """)
 
 
+# main function --> argparse
+
 def main():
     wrapper = textwrap.TextWrapper(width=70)
     string = wrapper.fill(text="Who-Is-On-My-WIFi")
@@ -65,7 +81,7 @@ def main():
                                      epilog=textwrap.dedent("""GitHub: <https://github.com/tucnakomet1>\n"""))
 
     parser.add_argument('-v', '--version', action='version',
-                        version='who_is_on_my_wifi 1.3.4', help='show current version')
+                        version='who_is_on_my_wifi 1.3.5', help='show current version')
 
     parser.add_argument('-l', '--license', action='store_true',
                         help='show Open Source License')
@@ -92,11 +108,11 @@ def main():
         WHO = who(args.time)
         for j in range(0, len(WHO)):
             print(f"\n{WHO[j][0]} {WHO[j][1]}\n{WHO[j][2]} {WHO[j][3]}\n{WHO[j][4]} {WHO[j][5]}\n")
-    else: parser.print_help()
 
 
-    if len(sys.argv) == 1:
+    elif len(sys.argv) == 1:
         parser.print_help()
+    else: parser.print_help()
 
 if __name__ == "__main__":
     main()

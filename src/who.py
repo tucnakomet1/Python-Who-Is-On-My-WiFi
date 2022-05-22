@@ -19,7 +19,6 @@ def who(time=10):
     gateway = dev[8]+"/24"
 
     MyDeviceList = ["IP Address:", MyIP, "Mac Address:", MyMac, "Device:", f"{name} {product_name} (Your device)"]
-    print(MyDeviceList)
     start = 0
 
     while start <= time:
@@ -32,10 +31,10 @@ def who(time=10):
 
         for res in answ:
             IP = res[1].psrc
-            if IP not in IPs: IPs.append(IP)
-
-            MAC = res[1].hwsrc
-            if MAC not in MACs:
+            if IP not in IPs: 
+                IPs.append(IP)
+                
+                MAC = res[1].hwsrc
                 MACs.append(MAC)
                 try:
                     deviceName = urllib.request.urlopen(f"http://api.macvendors.com/{MAC}")
@@ -55,7 +54,8 @@ def who(time=10):
                         deviceName="unknown"
                         deviceNames.append(deviceName)
 
-    for i in range(0, len(IPs)-1):
+
+    for i in range(0, len(IPs)):
         if IPs[i] == dev[8]: WhoList.append(["IP Address:", IPs[i], "Mac Address:", MACs[i], "Device:", f"{deviceNames[i]} (router)"])
         else: WhoList.append(["IP Address:", IPs[i], "Mac Address:", MACs[i], "Device:", deviceNames[i]])
 

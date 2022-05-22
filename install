@@ -8,11 +8,7 @@ echo -e "██║███╗██║██║██║   ██║██║�
 echo -e "╚███╔███╔╝██║╚██████╔╝██║ ╚═╝ ██║"
 echo -e " ╚══╝╚══╝ ╚═╝ ╚═════╝ ╚═╝     ╚═╝"
 echo ""
-<<<<<<< HEAD
-echo " <-> version v1.3.4 <->"
-=======
-echo " <-> version v1.3.3 <->"
->>>>>>> bbecd3217d7e7fe82a2e4882674367939ef297ac
+echo " <-> version v1.3.5 <->"
 echo " <-> https://github.com/tucnakomet1/Python-Who-Is-On-My-WiFi <->"
 echo ""
 
@@ -28,11 +24,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
                 sudo touch $apppth
                 sudo echo "[Desktop Entry]" > $apppth
-<<<<<<< HEAD
-                sudo echo "Version=1.3.4" >> $apppth
-=======
-                sudo echo "Version=1.3.3" >> $apppth
->>>>>>> bbecd3217d7e7fe82a2e4882674367939ef297ac
+                sudo echo "Version=1.3.5" >> $apppth
                 sudo echo "Type=Application" >> $apppth
                 sudo echo "Name=Who-Is-On-My-WiFi" >> $apppth
                 sudo echo "Comment=See who is stealing your WiFI network! Scan your WiFI! See how many devices are connected." >> $apppth
@@ -61,8 +53,4 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
                 fi
 
         fi
-<<<<<<< HEAD
 fi
-=======
-fi
->>>>>>> bbecd3217d7e7fe82a2e4882674367939ef297ac
